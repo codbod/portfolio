@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("contactForm");
     const phoneInput = document.getElementById("phone");
     const confirmationDiv = document.getElementById("confirmation");
+    const submitButton = form.querySelector('button[type="submit"]');
 
     // Auto-format phone number as XXX-XXX-XXXX while typing
     phoneInput.addEventListener("input", function (e) {
@@ -44,8 +45,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 5000);
     }
 
-    form.addEventListener("submit", async function (event) {
+    // Handle form submission
+    submitButton.addEventListener("click", async function (event) {
         event.preventDefault();
+        
+        // If the form is already being submitted, don't do anything
+        if (submitButton.disabled) return;
 
         // Get form values
         const formData = {
@@ -80,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
             // Show loading state
-            const submitButton = form.querySelector('button[type="submit"]');
             const originalButtonText = submitButton.innerHTML;
             submitButton.disabled = true;
             submitButton.innerHTML = 'Sending...';
@@ -109,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function () {
             showMessage('Failed to send message. Please try again later or contact me directly at cody.g.yeung@gmail.com', true);
         } finally {
             // Reset button state
-            const submitButton = form.querySelector('button[type="submit"]');
             submitButton.disabled = false;
             submitButton.innerHTML = 'Send Message';
         }

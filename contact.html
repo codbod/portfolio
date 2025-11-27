@@ -36,7 +36,7 @@
       <h2>For any further inquiries or opportunities, please fill out the form below.</h2>
     </header>
 
-    <form id="contactForm" novalidate>
+    <form id="contactForm" onsubmit="event.preventDefault(); return false;">
       <label for="firstName">First Name</label>
       <input type="text" id="firstName" name="firstName" required placeholder="e.g., Cody">
 
