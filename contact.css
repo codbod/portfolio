@@ -1,0 +1,62 @@
+/* Contact */
+form {
+    background-color: #ffffff;
+    border: 2px solid #5B8266;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #1B1F3B;
+  }
+  
+  form input,
+  form textarea,
+  form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #C3DFE0;
+    border-radius: 6px;
+    background-color: #F9F9F9;
+  }
+  
+  form button {
+    background-color: #3581B8;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #5B8266;
+  }
+  
+  /* Confirmation Text */
+  #confirmation {
+    color: #3581B8;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav a {
+      display: block;
+      margin: 10px 0;
+    }
+  
+    form {
+      width: 90%;
+    }
+  }

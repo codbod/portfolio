@@ -1,0 +1,77 @@
+/* Resume Page */
+.resume-viewer iframe {
+  width: 100%;
+  height: 80vh;
+  border: 2px solid #5B8266;
+  border-radius: 10px;
+  display: block;
+}
+
+.resume-download {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+main {
+  box-sizing: border-box;
+}
+
+.resume-download form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.resume-download select {
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: 1px solid #C3DFE0;
+  background-color: #F9F9F9;
+  color: #1B1F3B;
+}
+
+.fancy-download-btn {
+  background: linear-gradient(135deg, #3581B8, #5B8266);
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(53, 129, 184, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.fancy-download-btn:hover {
+  background: linear-gradient(135deg, #5B8266, #3581B8);
+  box-shadow: 0 6px 16px rgba(53, 129, 184, 0.4);
+  transform: scale(1.05);
+}
+
+/* === References Button on Resume Page === */
+.references-button {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.btn-references {
+  background-color: #3581B8;
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border-radius: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(53, 129, 184, 0.4);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-references:hover {
+  background-color: #1B1F3B;
+  box-shadow: 0 0 15px #3581B8;
+}

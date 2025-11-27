@@ -1,0 +1,202 @@
+/* General CSS for every page */
+/* General Reset & Typography */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Navigation Bar */
+body {
+  background-color: #C3DFE0;
+  color: #1B1F3B;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  grid-column: 2;
+  grid-row: 2;
+  padding: 2rem;                        
+}
+
+nav {
+  width: 100%;
+  background-color: #1B1F3B;
+  padding: 15px 0;
+  text-align: center;
+  margin: 0;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+nav a {
+  color: #F9ADA0;
+  margin: 0 20px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  font-size: 1.2em;
+}
+
+nav a:hover {
+  color: #3581B8;
+  text-shadow: 0 0 10px #3581B8, 0 0 20px #3581B8;
+}
+
+nav a.active {
+  background-color: #3581B8;
+  color: white;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 0 10px #3581B8;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+/* Sidebar */
+
+/* 1) Turn the <body> into a 2‑column grid when .with-sidebar is present */
+body.with-sidebar {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-rows: auto 1fr auto;     
+  min-height: 100vh;
+}
+
+/* 2) Sidebar occupies the first column; switch to sticky positioning */
+.sidebar {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 260px; 
+  background-color: #ffffff;
+  border-right: 1px solid #ddd;
+  padding: 2rem 1rem;
+  text-align: center;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
+  z-index: 1000; 
+  overflow-y: auto; 
+}
+
+
+/* circle headshot */
+.sidebar .profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+/* your name & role/tagline */
+.sidebar h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
+  color: #3581B8;
+}
+.sidebar p {
+  font-size: 0.9rem;
+  color: #5B8266;
+  margin-bottom: 1.5rem;
+}
+
+/* link list */
+.sidebar .contact-info a {
+  display: block;
+  margin: 0.4rem 0;
+  font-weight: bold;
+  text-decoration: none;
+  color: #1B1F3B;
+  transition: color 0.2s;
+}
+.sidebar .contact-info a:hover {
+  color: #3581B8;
+}
+
+/* 3) Flow nav, main, footer into the second column */
+nav,
+main,
+footer {
+  grid-column: 2;
+}
+
+/* 4) Hide sidebar on small screens and revert to normal flow */
+@media (max-width: 768px) {
+  body.with-sidebar {
+    display: block;
+  }
+  .sidebar {
+    display: none;
+  }
+}
+
+/* Header & Section Titles */
+h1,
+h2 {
+  color: #1B1F3B;
+  margin-bottom: 15px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+header h1 {
+  font-size: 3em;
+  color: #3581B8;
+}
+
+header h2 {
+  font-size: 1.5em;
+  color: #5B8266;
+}
+
+/* responsive */
+.hidden-header {
+  text-align: center;
+  padding: 2rem;
+  background-color: #C3DFE0;
+  color: #1B1F3B;
+}
+
+
+/* Footer */
+footer {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.site-footer {
+  background-color: #1B1F3B;
+  color: #F9ADA0;
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 1em;
+  margin-top: 60px;
+  border-top: 4px solid #3581B8;
+}
+
+.site-footer a {
+  color: #F9ADA0;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.site-footer a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px #3581B8;
+}
+
+.site-footer .footer-note {
+  margin-top: 10px;
+  font-style: italic;
+  font-size: 0.95em;
+  color: #C3DFE0;
+}
