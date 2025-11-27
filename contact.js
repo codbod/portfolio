@@ -136,18 +136,12 @@ document.addEventListener("DOMContentLoaded", function () {
             };
 
             // Send auto-reply to the sender
-            try {
-                await emailjs.send(
-                    EMAILJS_SERVICE_ID,
-                    EMAILJS_AUTOREPLY_TEMPLATE_ID,
-                    autoReplyParams
-                );
-                showMessage('Message sent successfully! A confirmation has been sent to your email.');
-            } catch (autoReplyError) {
-                console.error('Auto-reply failed to send:', autoReplyError);
-                // Still show success for the main message even if auto-reply fails
-                showMessage('Message sent successfully! (Note: Could not send confirmation email)');
-            }
+            await emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_AUTOREPLY_TEMPLATE_ID,
+                autoReplyParams
+            );
+            showMessage('Message sent successfully! A confirmation has been sent to your email.');
             
             // Update last submission time
             lastSubmissionTime = Date.now();

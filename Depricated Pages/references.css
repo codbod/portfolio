@@ -1,0 +1,72 @@
+/* References Page */
+.testimonials {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .testimonial {
+    background-color: #ffffff;
+    border-left: 6px solid #3581B8;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(27, 31, 59, 0.1);
+  }
+  
+  .testimonial h4 {
+    margin-top: 1rem;
+    color: #5B8266;
+    font-style: italic;
+  }
+  
+  .hidden-footer {
+    text-align: center;
+    margin-top: 4rem;
+    font-size: 0.9rem;
+    color: #888;
+  }
+  
+  .reference-button {
+    text-align: center;
+    margin: 3rem 0;
+  }
+  
+  .btn-hidden-page {
+    background-color: #3581B8;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(53, 129, 184, 0.4);
+    transition: all 0.3s ease;
+  }
+  
+  .btn-hidden-page:hover {
+    background-color: #1B1F3B;
+    box-shadow: 0 0 15px #3581B8;
+  }
+  
+  .back-button {
+    text-align: center;
+    margin: 2rem 0;
+  }
+  
+  .btn-back {
+    background-color: #5B8266;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(91, 130, 102, 0.4);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .btn-back:hover {
+    background-color: #3581B8;
+    box-shadow: 0 0 12px #3581B8;
+  }
