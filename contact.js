@@ -3,6 +3,11 @@ const EMAILJS_PUBLIC_KEY = 'H4771gcevWu5kIqdu';
 const EMAILJS_SERVICE_ID = 'service_9nf749f';
 const EMAILJS_TEMPLATE_ID = 'template_ocpt1ib';
 
+// Spam prevention settings
+const MIN_WORD_COUNT = 10;
+const SUBMISSION_COOLDOWN = 30000; // 30 seconds in milliseconds
+let lastSubmissionTime = 0;
+
 // Initialize EmailJS
 try {
     emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -51,6 +56,14 @@ document.addEventListener("DOMContentLoaded", function () {
         
         // If the form is already being submitted, don't do anything
         if (submitButton.disabled) return;
+        
+        // Check cooldown period
+        const currentTime = Date.now();
+        if (currentTime - lastSubmissionTime < SUBMISSION_COOLDOWN) {
+            const remainingTime = Math.ceil((SUBMISSION_COOLDOWN - (currentTime - lastSubmissionTime)) / 1000);
+            showMessage(`Please wait ${remainingTime} seconds before submitting again.`, true);
+            return;
+        }
 
         // Get form values
         const formData = {
@@ -67,6 +80,13 @@ document.addEventListener("DOMContentLoaded", function () {
         // Validate required fields
         if (!formData.firstName || !formData.lastName || !formData.email || !formData.subject || !formData.message) {
             showMessage('Please fill out all required fields!', true);
+            return;
+        }
+        
+        // Validate minimum word count in message
+        const wordCount = formData.message.trim().split(/\s+/).filter(word => word.length > 0).length;
+        if (wordCount < MIN_WORD_COUNT) {
+            showMessage(`Please write at least ${MIN_WORD_COUNT} words in your message. Current: ${wordCount} words.`, true);
             return;
         }
 
@@ -103,6 +123,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Send email using EmailJS
             await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+            
+            // Update last submission time
+            lastSubmissionTime = Date.now();
             
             // Show success message and reset form
             showMessage('Message sent successfully! I\'ll get back to you soon.');
