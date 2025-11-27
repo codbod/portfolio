@@ -2,13 +2,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.querySelector('.sidebar');
     const toggleButton = document.getElementById('sidebarToggle');
     const body = document.body;
+    const isMobile = window.innerWidth <= 1024;
+
+    // Function to update sidebar state
+    function updateSidebarState(hidden) {
+        if (hidden) {
+            body.classList.add('sidebar-hidden');
+        } else {
+            body.classList.remove('sidebar-hidden');
+        }
+        localStorage.setItem('sidebarState', hidden);
+        updateToggleButton();
+    }
+    
+    // Initialize with sidebar visible by default on desktop, hidden on mobile
+    const savedState = localStorage.getItem('sidebarState');
+    const isSidebarHidden = isMobile || (savedState !== null ? JSON.parse(savedState) : false);
 
     // Function to toggle sidebar
     function toggleSidebar() {
-        body.classList.toggle('sidebar-hidden');
-        // Update button text based on sidebar state
+        updateSidebarState(!body.classList.contains('sidebar-hidden'));
+    }
+
+    // Update toggle button icon
+    function updateToggleButton() {
+        if (!toggleButton) return;
+        toggleButton.textContent = body.classList.contains('sidebar-hidden') ? '☰' : '✕';
+    }
+
+    // Initialize sidebar state
+    function initSidebar() {
+        // Start with sidebar visible on desktop, hidden on mobile
+        updateSidebarState(isMobile);
+        
+        // Show toggle button on desktop, hide on mobile
         if (toggleButton) {
-            toggleButton.textContent = body.classList.contains('sidebar-hidden') ? '☰' : '✕';
+            toggleButton.style.display = window.innerWidth > 1024 ? 'flex' : 'none';
         }
     }
 
@@ -20,40 +49,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Close sidebar when clicking outside of it on mobile
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth <= 1024 && 
-            sidebar && 
-            !sidebar.contains(e.target) && 
-            e.target !== toggleButton) {
-            body.classList.add('sidebar-hidden');
-            if (toggleButton) toggleButton.textContent = '☰';
-        }
-    });
-
-    // Close sidebar when a navigation link is clicked (for mobile)
-    const navLinks = document.querySelectorAll('.sidebar a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth <= 1024) {
-                body.classList.add('sidebar-hidden');
-                if (toggleButton) toggleButton.textContent = '☰';
-            }
-        });
-    });
-
     // Handle window resize
     function handleResize() {
-        if (window.innerWidth > 1024) {
-            body.classList.remove('sidebar-hidden');
-            if (toggleButton) toggleButton.style.display = 'none';
+        const isNowMobile = window.innerWidth <= 1024;
+        if (toggleButton) {
+            toggleButton.style.display = isNowMobile ? 'none' : 'flex';
+        }
+        
+        // Update sidebar state based on screen size
+        if (isNowMobile) {
+            updateSidebarState(true);
         } else {
-            if (toggleButton) toggleButton.style.display = 'flex';
-            body.classList.add('sidebar-hidden');
+            // Restore previous state when returning to desktop
+            const savedState = localStorage.getItem('sidebarState');
+            updateSidebarState(savedState ? JSON.parse(savedState) : false);
         }
     }
 
     // Initialize
-    handleResize();
+    initSidebar();
     window.addEventListener('resize', handleResize);
 });

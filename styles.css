@@ -14,12 +14,26 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 main {
-  grid-column: 2;
+  grid-column: 1 / -1;
   grid-row: 2;
-  padding: 2rem;                        
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+/* When sidebar is visible, adjust main content */
+body:not(.sidebar-hidden) main {
+  grid-column: 2;
+  padding-left: 1rem;
+  padding-right: 2rem;
+  max-width: calc(100% - 260px);
+  margin: 0 auto 0 0;
 }
 
 nav {
@@ -30,15 +44,39 @@ nav {
   margin: 0;
   grid-column: 2;
   grid-row: 1;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ensure nav items don't wrap and have proper spacing */
+.nav-container {
+  display: flex;
+  min-width: 100%;
+  justify-content: center;
+  padding: 0 10px;
 }
 
 nav a {
   color: #F9ADA0;
-  margin: 0 20px;
+  margin: 0 10px;
+  padding: 5px 15px;
   text-decoration: none;
   font-weight: bold;
-  transition: color 0.3s ease;
-  font-size: 1.2em;
+  transition: all 0.3s ease;
+  font-size: 1em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border-radius: 20px;
 }
 
 nav a:hover {
@@ -65,29 +103,41 @@ body.with-sidebar {
   grid-template-rows: auto 1fr auto;     
   min-height: 100vh;
   transition: all 0.3s ease;
+  --sidebar-width: 260px;
+}
+
+/* When sidebar is hidden */
+body.sidebar-hidden.with-sidebar {
+  grid-template-columns: 0 1fr;
+  --sidebar-width: 0px;
 }
 
 /* 2) Sidebar occupies the first column; switch to sticky positioning */
 .sidebar {
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
-  width: 260px; 
+  width: 260px;
   background-color: #ffffff;
   border-right: 1px solid #ddd;
   padding: 2rem 1rem;
   text-align: center;
   box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
-  z-index: 1000; 
-  overflow-y: auto; 
+  z-index: 1000;
+  overflow-y: auto;
   transform: translateX(0);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, width 0.3s ease;
 }
 
-/* Sidebar toggle button */
+/* Hide sidebar when .sidebar-hidden is present */
+body.sidebar-hidden .sidebar {
+  transform: translateX(-100%);
+}
+
+/* Sidebar toggle button - Desktop only */
 .sidebar-toggle {
-  display: none;
+  display: none; /* Hidden by default */
   position: fixed;
   bottom: 30px;
   right: 30px;
@@ -102,9 +152,15 @@ body.with-sidebar {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   font-size: 1.5rem;
-  display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Show toggle button only on desktop */
+@media (min-width: 1025px) {
+  .sidebar-toggle {
+    display: flex;
+  }
 }
 
 .sidebar-toggle:hover {
@@ -112,16 +168,11 @@ body.with-sidebar {
   transform: scale(1.1);
 }
 
-/* When sidebar is hidden */
-.sidebar-hidden .sidebar {
-  transform: translateX(-100%);
-}
-
-.sidebar-hidden main,
-.sidebar-hidden nav,
-.sidebar-hidden .site-footer {
-  grid-column: 1 / -1;
-  margin-left: 0;
+/* Adjust content width when sidebar is hidden */
+.sidebar-hidden main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 /* Mobile styles */
@@ -134,18 +185,54 @@ body.with-sidebar {
     transform: translateX(-100%);
   }
   
-  .sidebar-visible .sidebar {
+  /* Only show sidebar when explicitly toggled on mobile */
+  body:not(.sidebar-hidden) .sidebar {
     transform: translateX(0);
-  }
-  
-  .sidebar-toggle {
-    display: flex;
   }
   
   main, nav, .site-footer {
     grid-column: 1 / -1;
     width: 100%;
     margin-left: 0;
+    max-width: 100%;
+  }
+  
+  /* Navigation adjustments for mobile */
+  nav {
+    justify-content: flex-start;
+    padding: 10px 5px;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  nav a {
+    font-size: 0.9em;
+    padding: 5px 12px;
+    margin: 0 5px;
+  }
+  
+  /* Hide the toggle button on mobile */
+  .sidebar-toggle {
+    display: none !important;
+  }
+  
+  /* Adjust main content padding on mobile */
+  main {
+    padding: 1rem;
+  }
+  
+  body:not(.sidebar-hidden) main {
+    max-width: 100%;
+    margin: 0;
+    padding: 1rem;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  nav a {
+    font-size: 0.85em;
+    padding: 5px 10px;
+    margin: 0 3px;
   }
 }
 
