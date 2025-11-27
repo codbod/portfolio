@@ -1,7 +1,8 @@
 // Initialize EmailJS with your public key
 const EMAILJS_PUBLIC_KEY = 'H4771gcevWu5kIqdu';
 const EMAILJS_SERVICE_ID = 'service_9nf749f';
-const EMAILJS_TEMPLATE_ID = 'template_ocpt1ib';
+const EMAILJS_TEMPLATE_ID = 'template_ocpt1ib'; // Main contact form template
+const EMAILJS_AUTOREPLY_TEMPLATE_ID = 'template_autoreply'; // Auto-reply template
 
 // Spam prevention settings
 const MIN_WORD_COUNT = 10;
@@ -121,14 +122,37 @@ document.addEventListener("DOMContentLoaded", function () {
                 date: new Date().toLocaleString()
             };
 
-            // Send email using EmailJS
+            // Send main email to you
             await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+            
+            // Prepare auto-reply parameters
+            const autoReplyParams = {
+                to_email: formData.email,
+                to_name: `${formData.firstName} ${formData.lastName}`.trim(),
+                from_name: "Cody Yeung",
+                subject: formData.subject,
+                message: formData.message,
+                date: new Date().toLocaleString()
+            };
+
+            // Send auto-reply to the sender
+            try {
+                await emailjs.send(
+                    EMAILJS_SERVICE_ID,
+                    EMAILJS_AUTOREPLY_TEMPLATE_ID,
+                    autoReplyParams
+                );
+                showMessage('Message sent successfully! A confirmation has been sent to your email.');
+            } catch (autoReplyError) {
+                console.error('Auto-reply failed to send:', autoReplyError);
+                // Still show success for the main message even if auto-reply fails
+                showMessage('Message sent successfully! (Note: Could not send confirmation email)');
+            }
             
             // Update last submission time
             lastSubmissionTime = Date.now();
             
-            // Show success message and reset form
-            showMessage('Message sent successfully! I\'ll get back to you soon.');
+            // Reset form
             form.reset();
             
         } catch (error) {
