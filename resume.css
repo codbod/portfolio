@@ -1,56 +1,238 @@
 /* Resume Page */
-.resume-viewer iframe {
-  width: 100%;
-  height: 80vh;
-  border: 2px solid #5B8266;
-  border-radius: 10px;
-  display: block;
+body {
+  background-color: #C3DFE0;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
 }
 
-.resume-download {
-  margin-top: 2rem;
-  text-align: center;
-}
-
-main {
-  box-sizing: border-box;
-}
-
-.resume-download form {
+/* Header Container */
+.header-container {
+  background-color: #1B1F3B;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 1rem;
-  margin-top: 2rem;
+  padding: 0 40px;
+  position: relative;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  min-height: 60px;
 }
 
-.resume-download select {
-  padding: 0.75rem 1rem;
-  font-size: 1.1rem;
-  border-radius: 8px;
-  border: 1px solid #C3DFE0;
-  background-color: #F9F9F9;
-  color: #1B1F3B;
+/* Navigation */
+nav {
+  width: 100%;
+  background-color: #1B1F3B;
+  padding: 15px 0;
+  text-align: center;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  position: relative;
 }
 
-.fancy-download-btn {
-  background: linear-gradient(135deg, #3581B8, #5B8266);
-  color: white;
-  font-size: 1.2rem;
-  padding: 0.75rem 2rem;
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(53, 129, 184, 0.3);
-  cursor: pointer;
-  transition: all 0.3s ease;
+/* Hide scrollbar for Chrome, Safari and Opera */
+nav::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-container {
+  display: flex;
+  min-width: 100%;
+  justify-content: center;
+  padding: 0 10px;
+  position: relative;
+}
+
+nav a {
+  color: #F9ADA0;
+  margin: 0 10px;
+  padding: 5px 15px;
+  text-decoration: none;
   font-weight: bold;
-  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  font-size: 1em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border-radius: 20px;
 }
 
-.fancy-download-btn:hover {
-  background: linear-gradient(135deg, #5B8266, #3581B8);
-  box-shadow: 0 6px 16px rgba(53, 129, 184, 0.4);
-  transform: scale(1.05);
+nav a:hover {
+  color: #3581B8;
+  text-shadow: 0 0 10px #3581B8, 0 0 20px #3581B8;
+}
+
+nav a.active {
+  background-color: #3581B8;
+  color: white;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 0 10px #3581B8;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+/* Download button in nav */
+.download-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.5rem 1.25rem;
+  background-color: #3581B8;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.download-nav-btn:hover {
+  background-color: #2a6a9a;
+  transform: translateY(-50%) translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.download-nav-btn:active {
+  transform: translateY(-50%);
+}
+
+.download-nav-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.page-header {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.resume-actions {
+  padding: 0.5rem 0;
+}
+
+.resume-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px 40px 40px;
+  min-height: calc(100vh - 120px);
+  position: relative;
+  background-color: #C3DFE0;
+}
+
+/* Ensure consistent layout with other pages */
+main {
+  padding-top: 1rem;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.5rem 1.25rem;
+  background-color: #3581B8;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-family: 'Segoe UI', sans-serif;
+  white-space: nowrap;
+}
+
+.download-btn:hover {
+  background-color: #2a6a9a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.download-btn:active {
+  transform: translateY(0);
+}
+
+.download-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.resume-iframe {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .header-container,
+  .resume-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px 0;
+  }
+  
+  .nav-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+  .download-nav-btn {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: calc(100% - 40px);
+    margin: 10px auto;
+    justify-content: center;
+    display: inline-flex;
+  }
+  
+  .resume-container {
+    padding: 15px;
+    min-height: calc(100vh - 200px);
+  }
+  
+  .resume-iframe {
+    width: 100% !important;
+    height: calc(100vh - 220px) !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .resume-actions {
+    display: none;
+  }
+  
+  .resume-iframe {
+    height: 100vh;
+  }
 }
 
 /* === References Button on Resume Page === */

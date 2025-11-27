@@ -4,36 +4,51 @@ document.addEventListener('DOMContentLoaded', function() {
     const body = document.body;
     const isMobile = window.innerWidth <= 1024;
 
+    // Add with-sidebar class to body if not present
+    body.classList.add('with-sidebar');
+
     // Function to update sidebar state
-    function updateSidebarState(hidden) {
-        if (hidden) {
-            body.classList.add('sidebar-hidden');
+    function updateSidebarState(visible) {
+        if (visible) {
+            body.classList.add('sidebar-visible');
+            // Only set visible styles when showing
+            setTimeout(() => {
+                sidebar.style.visibility = 'visible';
+                sidebar.style.opacity = '1';
+            }, 10);
         } else {
-            body.classList.remove('sidebar-hidden');
+            body.classList.remove('sidebar-visible');
+            // Hide after transition
+            setTimeout(() => {
+                if (!body.classList.contains('sidebar-visible')) {
+                    sidebar.style.visibility = 'hidden';
+                    sidebar.style.opacity = '0';
+                }
+            }, 300); // Match this with CSS transition duration
         }
-        localStorage.setItem('sidebarState', hidden);
+        localStorage.setItem('sidebarState', visible);
         updateToggleButton();
     }
     
-    // Initialize with sidebar visible by default on desktop, hidden on mobile
+    // Initialize with sidebar hidden by default
     const savedState = localStorage.getItem('sidebarState');
-    const isSidebarHidden = isMobile || (savedState !== null ? JSON.parse(savedState) : false);
+    const isSidebarVisible = false; // Always start hidden regardless of saved state
 
     // Function to toggle sidebar
     function toggleSidebar() {
-        updateSidebarState(!body.classList.contains('sidebar-hidden'));
+        updateSidebarState(!body.classList.contains('sidebar-visible'));
     }
 
     // Update toggle button icon
     function updateToggleButton() {
         if (!toggleButton) return;
-        toggleButton.textContent = body.classList.contains('sidebar-hidden') ? '☰' : '✕';
+        toggleButton.textContent = body.classList.contains('sidebar-visible') ? '✕' : '☰';
     }
 
     // Initialize sidebar state
     function initSidebar() {
-        // Start with sidebar visible on desktop, hidden on mobile
-        updateSidebarState(isMobile);
+        // Start with sidebar hidden by default
+        updateSidebarState(isSidebarVisible);
         
         // Show toggle button on desktop, hide on mobile
         if (toggleButton) {

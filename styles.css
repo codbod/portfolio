@@ -20,20 +20,19 @@ body {
 main {
   grid-column: 1 / -1;
   grid-row: 2;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem;
-  transition: all 0.3s ease;
+  padding: 3rem 4rem;
   width: 100%;
+  transition: none;
 }
 
-/* When sidebar is visible, adjust main content */
-body:not(.sidebar-hidden) main {
-  grid-column: 2;
-  padding-left: 1rem;
-  padding-right: 2rem;
-  max-width: calc(100% - 260px);
-  margin: 0 auto 0 0;
+/* Increase content width on larger screens */
+@media (min-width: 1600px) {
+  main {
+    max-width: 1500px;
+    padding: 3rem 6rem;
+  }
 }
 
 nav {
@@ -42,8 +41,6 @@ nav {
   padding: 15px 0;
   text-align: center;
   margin: 0;
-  grid-column: 2;
-  grid-row: 1;
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
@@ -96,43 +93,39 @@ nav a.active {
 
 /* Sidebar */
 
-/* 1) Turn the <body> into a 2‑column grid when .with-sidebar is present */
+/* Body with sidebar - no grid needed for overlay */
 body.with-sidebar {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  grid-template-rows: auto 1fr auto;     
   min-height: 100vh;
+  position: relative;
   transition: all 0.3s ease;
-  --sidebar-width: 260px;
-}
-
-/* When sidebar is hidden */
-body.sidebar-hidden.with-sidebar {
-  grid-template-columns: 0 1fr;
   --sidebar-width: 0px;
 }
 
-/* 2) Sidebar occupies the first column; switch to sticky positioning */
+/* Sidebar overlay - hidden by default */
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
-  width: 260px;
+  width: 300px;
   background-color: #ffffff;
   border-right: 1px solid #ddd;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1.5rem;
   text-align: center;
-  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
   z-index: 1000;
   overflow-y: auto;
-  transform: translateX(0);
-  transition: transform 0.3s ease-in-out, width 0.3s ease;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  visibility: hidden; /* Hide by default */
+  opacity: 0; /* Start with 0 opacity */
 }
 
-/* Hide sidebar when .sidebar-hidden is present */
-body.sidebar-hidden .sidebar {
-  transform: translateX(-100%);
+/* Show sidebar when .sidebar-visible is present */
+body.with-sidebar.sidebar-visible .sidebar {
+  transform: translateX(0);
+  visibility: visible; /* Make it visible */
+  opacity: 1; /* Fade in */
 }
 
 /* Sidebar toggle button - Desktop only */
@@ -168,32 +161,19 @@ body.sidebar-hidden .sidebar {
   transform: scale(1.1);
 }
 
-/* Adjust content width when sidebar is hidden */
-.sidebar-hidden main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
 /* Mobile styles */
 @media (max-width: 1024px) {
-  body.with-sidebar {
-    grid-template-columns: 1fr;
-  }
-  
   .sidebar {
     transform: translateX(-100%);
   }
   
   /* Only show sidebar when explicitly toggled on mobile */
-  body:not(.sidebar-hidden) .sidebar {
+  body.with-sidebar.sidebar-visible .sidebar {
     transform: translateX(0);
   }
   
   main, nav, .site-footer {
-    grid-column: 1 / -1;
     width: 100%;
-    margin-left: 0;
     max-width: 100%;
   }
   
@@ -238,11 +218,11 @@ body.sidebar-hidden .sidebar {
 
 /* circle headshot */
 .sidebar .profile-pic {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 /* your name & role/tagline */
