@@ -6,6 +6,8 @@
   <title>Contact – Cody Yeung</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="contact.css">
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script src="contact.js" defer></script>
   <script src="nav.js" defer></script>
 </head>
@@ -34,7 +36,7 @@
       <h2>For any further inquiries or opportunities, please fill out the form below.</h2>
     </header>
 
-    <form action="#" method="post">
+    <form id="contactForm" novalidate>
       <label for="firstName">First Name</label>
       <input type="text" id="firstName" name="firstName" required placeholder="e.g., Cody">
 
