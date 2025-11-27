@@ -1,5 +1,5 @@
 // Initialize EmailJS with your public key
-const EMAILJS_PUBLIC_KEY = '7QxODAogmn_zuLXKG';
+const EMAILJS_PUBLIC_KEY = 'H4771gcevWu5kIqdu';
 const EMAILJS_SERVICE_ID = 'service_9nf749f';
 const EMAILJS_TEMPLATE_ID = 'template_ocpt1ib';
 
