@@ -2,88 +2,199 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Home - Cody Yeung</title>
+  <title>About Me – Cody Yeung</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="home.css">
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="index.css">
   <script src="nav.js" defer></script>
+  <script src="about.js" defer></script>
 </head>
-<body>
+<body class="with-sidebar">
+
+  <aside class="sidebar">
+    <img src="headshot.jpg" alt="Cody Yeung" class="profile-pic">
+    <h3>Cody Yeung</h3>
+    <p>Aspiring Networking Specialist</p>
+    <div class="contact-info">
+      <a href="https://www.linkedin.com/in/codyyeung04/" target="_blank">LinkedIn</a>
+      <a href="mailto:cody.g.yeung@gmail.com">Email</a>
+      <a href="https://www.instagram.com/c0dc0d/" target="_blank">Instagram</a>
+    </div>
+  </aside>
+
   <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About Me</a>
-    <a href="projects.html">Projects</a>
+    <a href="about.html" class="active">About Me</a>
     <a href="resume.html">Resume</a>
     <a href="contact.html">Contact Me</a>
   </nav>
 
-  <!-- Introduction Section -->
-  <section class="split-section">
-    <div class="split-content intro">
-      <h1 class="intro-name">Cody Yeung</h1>
-      <p>Hello! I’m Cody Yeung — a naturally curious and detail-oriented individual with a passion for creating, learning, and exploring. Whether I’m building 
-        custom mechanical keyboards, experimenting in the kitchen, or cruising around on my electric skateboard, I enjoy activities that blend creativity and precision.
-      <br><br>When I’m not working on tech projects or academics, you can usually find me outside playing tennis, ping pong, or pickleball — 
-      I love the strategy and focus behind racket sports. Nature helps me recharge, and being active keeps me grounded. 
-      My favorite music artists are Blackpink (Rosé is my bias) and IU, and my MBTI is ISTJ.</p>
+  <main>
+    <div class="about-top">
+      <section class="about-intro">
+        <h1>About Me</h1>
+        <p>Hi, I’m Cody Yeung, a junior at Arizona State University pursuing a B.S. in Information Technology with a concentration in Networking and Security. 
+          I specialize in IT support, enterprise infrastructure, and technical project implementation. My experience spans configuring and deploying scalable 
+          solutions using Microsoft 365, Azure, Cisco technologies, and practicing Agile and Scrum methodologies in collaborative team environments.
+          <br><br>
+          I bring hands-on expertise in system administration, Active Directory, and network diagnostics, with a strong focus on streamlining IT operations and improving uptime. 
+          I excel in troubleshooting complex technical issues, automating tasks with PowerShell, and optimizing enterprise environments for security and performance. 
+          I’m driven by the opportunity to solve problems, enhance systems, and contribute to organizations through efficient, secure, and innovative IT practices.
+        </p>
+      </section>
+  
+      <section class="about-fun">
+        <h2>Fun Facts</h2>
+        <ul>
+          <li>I build mechanical keyboards in my free time</li>
+          <li>I enjoy racket sports like tennis, ping pong, and pickleball</li>
+          <li>I love being outside and enjoying nature</li>
+          <li>Blackpink is my favorite band</li>
+          <li>My favorite Sanrio Character is Cinnamoroll</li>
+        </ul>
+      </section>
     </div>
-    <div class="split-image-headshot">
-      <img src="headshot.jpg" alt="Cody Yeung">
-    </div>
-  </section>
 
-  <!-- Skills Section -->
-  <section class="split-section">
-    <div class="split-content">
-      <h2>Key Skills</h2>
+    <section class="about-education education-section">
+      <h2>Education</h2>
+      <p><strong>Arizona State University</strong><br>
+         B.S. in Information Technology<br>
+         Focus in Networking & Security<br>
+         Expected Graduation: 2026</p>
+    </section>
+
+    <section class="about-skills">
+      <h2>Skills Snapshot</h2>
       <ul>
-        <li>Microsoft 365 & Azure</li>
-        <li>Cisco Technologies</li>
+        <li>Microsoft Azure and AWS</li>
+        <li>Cisco CLI & Networking</li>
+        <li>Windows / Linux / macOS</li>
+        <li>Active Directory</li>
+        <li>Front-End Development</li>
+        <li>Cybersecurity Fundamentals</li>
         <li>Agile & Scrum Methodologies</li>
+        <li>PowerShell Scripting</li>
+        <li>Technical Support</li>
+        <li>Project Management</li>
+        <li>Airtable</li>
+        <li>Microsoft Power Platform Development</li>
+        <li>Cisco Meraki</li>
         <li>System Administration</li>
-        <li>Network Infrastructure</li>
       </ul>
-      <p><a href="resume.html">View Full Skill Set</a></p>
-    </div>
-    <div class="split-image">
-      <img src="skills.jpg" alt="Technical Skills">
-    </div>
-  </section>
+    </section>
 
-  <!-- Projects Section -->
-  <section class="split-section">
-    <div class="split-content">
-      <h2>Featured Projects</h2>
-      <ul>
-        <li><strong>Large Warehouse Connectivity</strong> – Engineered a robust Layer 2/Layer 3 network design to support high-traffic warehouse operations. <a href="projects.html#warehouse-connectivity">Learn more</a></li>
-        <li><strong>Enterprise Workstation Deployment</strong> – Assisted in deploying 500+ enterprise-grade workstations at Wells Fargo Headquarters. <a href="projects.html#workstation-deployment">Learn more</a></li>
-        <li><strong>Talent Management Application</strong> – Led development of a Power Apps solution using Microsoft technologies to streamline internal operations. <a href="projects.html#talent-app">Learn more</a></li>
-      </ul>
-    </div>
-    <div class="split-image">
-      <img src="Kanban.png" alt="Projects">
-    </div>
-  </section>
+    <section class="about-experience">
+      <h2>Experience</h2>
+    
+      <!-- SCAI IT Support -->
+      <div class="experience-item">
+        <h3>SCAI IT Support – Arizona State University</h3>
+        <p><strong>Dec 2024 – Present · Tempe, AZ</strong></p>
+    
+        <p class="experience-preview">
+          Provided advanced technical support for Windows and Linux systems. Responsibilities include OS imaging, Active Directory management, network diagnostics, and remote troubleshooting.
+        </p>
+    
+        <div class="experience-full hidden">
+          <p>As an IT Support Specialist at SCAI, I provide advanced technical support, specializing in diagnosing and resolving complex issues in Windows and Linux environments. My role extends beyond basic troubleshooting, focusing on escalated support requests, in-depth system analysis, and implementing long-term solutions to enhance IT operations.</p>
+          <p>Key responsibilities include OS imaging and deployments, advanced network diagnostics, and system performance optimization. I play a crucial role in Active Directory administration, managing user accounts, security policies, and group permissions to maintain a secure and efficient IT environment.</p>
+          <p>In addition to deskside support, I assist with remote troubleshooting and virtual assistance, ensuring quick and effective resolutions for hardware, software, and connectivity issues. I collaborate with cross-functional teams to develop and document IT procedures, improving efficiency and knowledge sharing.</p>
+          <p>My goal is to provide high-level, user-centric support, ensuring that all systems operate seamlessly while empowering users with the knowledge and tools they need for success. With a strong focus on proactive problem-solving, customer satisfaction, and operational efficiency, I contribute to a more resilient and responsive IT infrastructure.</p>
+        </div>
+        <button class="show-more-btn">Show More</button>
+      </div>
+    
+      <!-- Huaka'i Fellow -->
+      <div class="experience-item">
+        <h3>Huaka'i Fellow – Pacxa</h3>
+        <p><strong>Jun 2024 – Aug 2024 · Honolulu, HI</strong></p>
+    
+        <p class="experience-preview">
+          Led a team to develop a talent management app using Power Apps. Installed Cisco technologies, labeled network drops, and supported client IT needs.
+        </p>
+    
+        <div class="experience-full hidden">
+          <p>During my 2024 summer internship at Pacxa, I took on a leadership role by leading a team of 7 interns to develop a comprehensive talent management application using Power Apps. To maintain a quick and efficient work environment, I utilized Scrum and Agile methodologies, ensuring that all team members were fully engaged and productive.</p>
+          <p>I employed a range of technologies, including Excel for the database, Power Apps for the front end, Power Automate for the backend, and Microsoft Copilot Studios to train an AI for our front-end chatbot. To keep the team organized and on track, I used a Kanban board to manage tasks, track progress, and ensure alignment among team members. Regular communication with stakeholders was crucial; I provided updates, gathered feedback, and ensured the project met organizational needs and expectations.</p>
+          <p>Aside from project management, I also enhanced network organization and efficiency by accurately labeling over 100 data drops in multiple buildings. I configured and installed enterprise-grade Cisco technologies, ensuring a robust and reliable network infrastructure. I also identified and resolved technical issues during installation and configuration, maintaining high standards of network performance and reliability. Additionally, I attended client meetings to discuss project requirements and provide expert recommendations, ensuring the project met client needs and expectations.</p>
+        </div>
+        <button class="show-more-btn">Show More</button>
+      </div>
+    
+      <!-- Summer Intern -->
+      <div class="experience-item">
+        <h3>Summer Intern – Pacxa</h3>
+        <p><strong>Jun 2023 – Aug 2023 · Honolulu, HI</strong></p>
+    
+        <p class="experience-preview">
+          Co-built a secure Azure-connected server and developed an inventory app in Power Apps for device tracking.
+        </p>
+    
+        <div class="experience-full hidden">
+          <p>Co-led a team to build and configure a server through Microsoft Azure. I configured the physical server and a Cisco Meraki firewall in order to secure the server. Using Azure we were able to connect a physical server in the PACXA office to the cloud in order to securely run and deploy Azure Virtual Desktop — all of which was done without prior experience.</p>
+          <p>Helped create the Device as a Service (DaaS) PowerApps application for inventory management of technological devices. Upgraded a previously inefficient method of tracking devices by concentrating all the data into Microsoft Lists and creating an interactive user interface to input data. Brainstormed, executed, and presented everything to an executive board in under 6 weeks.</p>
+        </div>
+        <button class="show-more-btn">Show More</button>
+      </div>
+    
+      <!-- Best Buy -->
+      <div class="experience-item">
+        <h3>Product Flow Specialist – Best Buy</h3>
+        <p><strong>Nov 2024 – Jan 2025 · Tempe, AZ</strong></p>
+    
+        <p class="experience-preview">
+          Managed product shipments, organized sales floor displays, and assisted customers with tech-related questions.
+        </p>
+    
+        <div class="experience-full hidden">
+          <p>As a member of the Product Flow Team at Best Buy, I played a key role in managing product shipments, organizing the sales floor, and providing excellent customer service. My responsibilities included unloading and unpacking truck shipments, stocking shelves, and ensuring that products were properly displayed for easy customer access.</p>
+          <p>I was also proactive in assisting customers with any tech-related questions, offering guidance on products and troubleshooting basic technical issues. Additionally, I took pride in maintaining a clean and organized store environment, ensuring that the sales floor remained neat and visually appealing for both customers and staff.</p>
+          <p>My experience at Best Buy sharpened my attention to detail, teamwork, and customer service skills, all while helping to create a seamless and enjoyable shopping experience for customers.</p>
+        </div>
+        <button class="show-more-btn">Show More</button>
+      </div>
+    
+      <!-- Tennis Coach -->
+      <div class="experience-item">
+        <h3>Tennis Coach – USTA Hawaii Pacific</h3>
+        <p><strong>Aug 2021 – Aug 2024 · Honolulu, HI</strong></p>
+    
+        <p class="experience-preview">
+          Coached youth tennis players aged 4–16, teaching fundamentals to advanced match play techniques.
+        </p>
+    
+        <div class="experience-full hidden">
+          <p>As a tennis coach on Oahu, I nurtured and developed the next generation of players, spanning ages 4 to 16. My role encompassed organizing a comprehensive curriculum, covering fundamental basics to advanced techniques.</p>
+          <p>Tailoring my approach to suit the needs of each age group, I introduced our youngest learners (ages 4-6) to tennis in a nurturing, play-based environment, instilling a love for the game. For intermediate players (ages 7-12), I emphasized fundamental techniques, hand-eye coordination, and teamwork, building a strong foundation. Advanced students (ages 13-16) benefited from personalized training focusing on agility, strategy, and match tactics.</p>
+          <p>Beyond tennis skills, I instilled life skills like sportsmanship, resilience, and discipline. Witnessing these young players evolve into confident and skilled tennis enthusiasts brought immense joy. My journey as a youth tennis coach went beyond instruction; it was a profound experience shaping the future of tennis in our community, one player at a time.</p>
+        </div>
+        <button class="show-more-btn">Show More</button>
+      </div>
+    
+      <!-- Safeway -->
+      <div class="experience-item">
+        <h3>Deli Clerk – Safeway</h3>
+        <p><strong>May 2023 – Aug 2023 · Honolulu, HI</strong></p>
+    
+        <p class="experience-preview">
+          Prepared deli products, served customers, and maintained food safety and cleanliness standards.
+        </p>
+    
+        <div class="experience-full hidden">
+          <p>As a deli team member at Kapahulu Safeway, I expertly prepared and served a variety of deli products, ensuring food quality, safety, and customer satisfaction. My responsibilities included slicing meats and cheeses to order, crafting sandwiches, maintaining a clean work area, and providing friendly, efficient service to meet our customers' needs.</p>
+        </div>
+        <button class="show-more-btn">Show More</button>
+      </div>
+    
+    </section>
+  </main>
 
-  <!-- Call to Action Section -->
-  <section class="split-section">
-    <div class="split-content">
-      <h2>Let's Connect</h2>
-      <p>Interested in collaborating or learning more about what I do? <a href="contact.html"><br> Get in touch</a> or <a href="resume.html">explore my resume</a>.</p>
-    </div>
-    <div class="split-image">
-      <img src="handshake.jpg" alt="Contact">
-    </div>
-  </section>
+  <footer class="site-footer">
+    <p>© 2025 Cody Yeung</p>
+    <p>
+      <a href="mailto:cody.g.yeung@gmail.com">Email</a> |
+      <a href="https://linkedin.com/in/codyyeung04" target="_blank">LinkedIn</a> |
+      <a href="resume.html" target="_blank">Resume</a>
+    </p>
+    <p class="footer-note">Aspiring IT Specialist | Problem Solver | Tech Enthusiast</p>
+  </footer>
 </body>
-
-<footer class="site-footer">
-  <p>© 2025 Cody Yeung</p>
-  <p>
-    <a href="mailto:cody.g.yeung@gmail.com">Email</a> |
-    <a href="https://linkedin.com/in/codyyeung04" target="_blank">LinkedIn</a> |
-    <a href="resume.html" target="_blank">Resume</a>
-  </p>
-  <p class="footer-note">Aspiring IT Specialist | Problem Solver | Tech Enthusiast</p>
-</footer>
 </html>
