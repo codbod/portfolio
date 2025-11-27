@@ -2,7 +2,7 @@
 const EMAILJS_PUBLIC_KEY = 'H4771gcevWu5kIqdu';
 const EMAILJS_SERVICE_ID = 'service_9nf749f';
 const EMAILJS_TEMPLATE_ID = 'template_ocpt1ib'; // Main contact form template
-const EMAILJS_AUTOREPLY_TEMPLATE_ID = 'template_autoreply'; // Auto-reply template
+const EMAILJS_AUTOREPLY_TEMPLATE_ID = 'template_wnl6tul'; // Auto-reply template
 
 // Spam prevention settings
 const MIN_WORD_COUNT = 10;
