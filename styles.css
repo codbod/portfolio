@@ -106,12 +106,82 @@ body {
   color: var(--text-color);
   line-height: 1.6;
   margin: 0;
-  padding-top: 70px; /* Fixed padding for navbar */
+  padding-top: 60px; /* Fixed padding for navbar */
   min-height: 100vh;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Navigation Container */
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--nav-bg);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 0 20px;
+}
+
+/* Center the navigation links */
+.nav-center {
+  margin: 0 auto;
+  position: relative;
+  left: 0;
+  transform: none;
+}
+
+/* Navigation links */
+.nav-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--nav-text);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  background-color: var(--nav-hover);
+  color: var(--nav-text);
+  text-decoration: none;
+}
+
+.nav-links a.active {
+  background-color: var(--nav-active);
+  color: var(--nav-text);
+}
+
+/* Theme switch container */
+.theme-switch-container {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  z-index: 1001;
+}
+
+/* Ensure nav is above other content */
+nav {
+  z-index: 1000;
 }
 
 main {
@@ -134,18 +204,9 @@ main {
 
 .nav-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  max-width: 1200px;
-  width: 100%;
-  height: 50px; /* Fixed height to prevent shifts */
-  margin: 0 auto;
   padding: 0 20px;
-  position: relative;
-  flex-shrink: 0; /* Prevent shrinking */
-}
-
-.nav-links {
   display: flex;
   gap: 15px;
   flex-wrap: nowrap;

@@ -9,6 +9,8 @@
   --nav-active: #3581B8;
   --card-bg: #ffffff;
   --card-shadow: rgba(0, 0, 0, 0.1);
+  --nav-height: 60px;
+  --content-padding: 20px;
 }
 
 [data-theme="dark"] {
@@ -27,32 +29,102 @@ body {
   color: var(--text-color);
   min-height: 100vh;
   margin: 0;
-  padding: 70px 0 0;
+  padding: var(--nav-height) 0 0;
   font-family: 'Segoe UI', sans-serif;
   position: relative;
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Download Button */
-.download-resume-btn {
+/* Navigation */
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  background-color: var(--nav-bg);
   position: fixed;
-  top: 85px;
-  right: 30px;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  height: var(--nav-height);
   z-index: 1000;
-  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 0;
+}
+
+.theme-switch-container {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  z-index: 1001;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  left: 0;
+  transform: none;
+  justify-content: center;
+  flex-grow: 1;
+  max-width: 400px;
+}
+
+.nav-links a {
+  color: var(--nav-text);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.nav-links a:hover {
+  background-color: var(--nav-hover);
+  color: var(--nav-text);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: auto;
+}
+
+/* Download Button in Nav Bar */
+.nav-container .download-resume-btn {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: auto;
+  z-index: 1001;
+  margin: 0;
+  padding: 0;
 }
 
 .download-resume-btn .download-nav-btn {
   background-color: var(--nav-active);
   color: var(--nav-text);
-  padding: 8px 16px;
-  border-radius: 4px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9em;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-weight: 500;
-  box-shadow: 0 2px 5px var(--card-shadow);
+  height: 36px;
+  white-space: nowrap;
   transition: all 0.2s ease;
 }
 
@@ -72,154 +144,25 @@ body {
   transform: translateY(1px);
 }
 
-/* Adjust position when sidebar is toggled */
-body.sidebar-visible .download-resume-btn {
-  right: calc(250px + 30px);
-}
-
-@media (max-width: 768px) {
-  .download-resume-btn {
-    top: 75px;
-    right: 15px;
-  }
-  
-  .download-resume-btn .download-nav-btn {
-    padding: 6px 12px;
-    font-size: 0.9rem;
-  }
-  
-  body.sidebar-visible .download-resume-btn {
-    right: 15px;
-  }
-}
-
-/* Header Container */
-.header-container {
-  background-color: #1B1F3B;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 40px;
-  position: relative;
-  z-index: 100;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  min-height: 60px;
-}
-
-/* Navigation */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: var(--nav-bg);
-  padding: 15px 0;
-  text-align: center;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  z-index: 1000;
-  box-shadow: 0 2px 5px var(--card-shadow);
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-nav::-webkit-scrollbar {
-  display: none;
-}
-
-.nav-container {
-  display: flex;
-  min-width: 100%;
-  justify-content: center;
-  padding: 0 10px;
-  position: relative;
-}
-
-nav a {
-  color: var(--nav-text);
-  margin: 0 10px;
-  padding: 5px 15px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  font-size: 1em;
-  white-space: nowrap;
-  flex-shrink: 0;
-  border-radius: 20px;
-}
-
-nav a:hover {
-  color: var(--nav-hover);
-  text-shadow: 0 0 10px var(--nav-hover), 0 0 20px var(--nav-hover);
-}
-
-nav a.active {
-  background-color: var(--nav-active);
-  color: white;
-  border-radius: 10px;
-  padding: 0.5rem 1rem;
-  box-shadow: 0 0 10px var(--nav-active);
-  font-weight: bold;
-  transition: 0.3s ease;
-}
-
-/* Download button in nav */
-.download-nav-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0.5rem 1.25rem;
-  background-color: #3581B8;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.95rem;
-  white-space: nowrap;
-}
-
-.download-nav-btn:hover {
-  background-color: #2a6a9a;
-  transform: translateY(-50%) translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.download-nav-btn:active {
-  transform: translateY(-50%);
-}
-
-.download-nav-btn svg {
-  width: 16px;
-  height: 16px;
-}
-
 .resume-actions {
   padding: 0.5rem 0;
 }
 
 .resume-container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 30px 40px 40px;
-  min-height: calc(100vh - 120px);
+  padding: 30px var(--content-padding) 60px;
+  min-height: calc(100vh - var(--nav-height) - 60px);
   position: relative;
   background-color: var(--bg-color);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
   transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Ensure consistent layout with other pages */
@@ -261,9 +204,10 @@ main {
 }
 
 .resume-iframe {
-  width: 90%;
+  width: 100%;
   max-width: 1000px;
-  height: 90vh;
+  height: calc(100vh - var(--nav-height) - 100px);
+  min-height: 500px;
   border: none;
   background: var(--card-bg);
   border-radius: 8px;
@@ -283,37 +227,78 @@ main {
 }
 
 @media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 10px 0;
+  body {
+    padding-top: calc(var(--nav-height) * 1.5); /* Add more space at the top */
   }
   
   .nav-container {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px 0;
+    padding: 10px 1rem;
+    height: auto;
+    min-height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
-  .download-nav-btn {
-    position: relative;
-    right: auto;
-    top: auto;
-    transform: none;
-    width: calc(100% - 40px);
-    margin: 10px auto;
+  /* Navigation links on mobile */
+  .nav-links {
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 5px 0;
+    width: 100%;
     justify-content: center;
-    display: inline-flex;
+    flex-wrap: wrap;
+  }
+
+  /* Download button on mobile */
+  .nav-container .download-resume-btn {
+    position: static;
+    margin: 5px auto 0;
+    padding: 10px 0;
+    justify-content: center;
+    width: 100%;
+    order: 3;
+    background-color: var(--nav-bg);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+  }
+  
+  .theme-switch-container {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+  }
+  
+  /* Adjust main content spacing */
+  .resume-container {
+    padding-top: calc(var(--nav-height) + 20px);
+  }
+  
+  .download-resume-btn .download-nav-btn {
+    padding: 6px 20px;
+    font-size: 0.9em;
+    border-radius: 14px;
   }
   
   .resume-container {
     padding: 15px;
-    min-height: calc(100vh - 200px);
+    min-height: calc(100vh - var(--nav-height) - 40px);
   }
   
   .resume-iframe {
     width: 100% !important;
-    height: calc(100vh - 220px) !important;
+    height: calc(100vh - 180px) !important; /* Adjusted height for better mobile view */
+    margin-top: 10px;
   }
 }
 
