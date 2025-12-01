@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact – Cody Yeung</title>
+  <script>
+    // Apply theme before any content loads
+    (function() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="contact.css">
   <!-- EmailJS SDK -->
@@ -11,6 +18,8 @@
   <script src="contact.js" defer></script>
   <script src="nav.js" defer></script>
   <script src="sidebar.js" defer></script>
+  <script src="theme.js" defer></script>
+  <script src="transitions.js" defer></script>
 </head>
 <body class="with-sidebar">
 
@@ -28,11 +37,7 @@
   <!-- Toggle Button -->
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
 
-  <nav>
-    <a href="index.html">About Me</a>
-    <a href="resume.html">Resume</a>
-    <a href="contact.html" class="active">Contact Me</a>
-  </nav>
+  <!-- Navigation will be loaded here by nav.js -->
 
   <main>
     <header>

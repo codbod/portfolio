@@ -4,11 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Me – Cody Yeung</title>
+  <script>
+    // Apply theme before any content loads
+    (function() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+  <script>
+    // Apply theme before page renders to prevent flash of light theme
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="index.css">
   <script src="nav.js" defer></script>
   <script src="about.js" defer></script>
   <script src="sidebar.js" defer></script>
+  <script src="theme.js" defer></script>
+  <script src="transitions.js" defer></script>
 </head>
 <body>
 
@@ -26,13 +44,7 @@
   <!-- Toggle Button -->
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
 
-  <nav>
-    <div class="nav-container">
-      <a href="index.html" class="active">About Me</a>
-      <a href="resume.html">Resume</a>
-      <a href="contact.html">Contact Me</a>
-    </div>
-  </nav>
+  <!-- Navigation will be loaded here by nav.js -->
 
   <main class="about-container">
     <div class="about-top">

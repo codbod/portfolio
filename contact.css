@@ -1,137 +1,331 @@
-/* Contact */
-form {
-    background-color: #ffffff;
-    border: 2px solid #5B8266;
-    padding: 25px;
-    border-radius: 10px;
+/* Contact Page Styling */
+main {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    background-color: transparent;
+}
+
+main header {
+    text-align: center;
+    margin: 0 auto 40px;
+    padding: 0;
+    max-width: 800px;
+    position: relative;
+    background: none;
+}
+
+main header h1 {
+    color: var(--text-color);
+    margin: 0 0 8px 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    position: relative;
+    display: block;
+    background: none;
+    text-shadow: none;
+}
+
+main header h2 {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: 400;
+    opacity: 0.9;
+    margin: 8px auto 0;
     max-width: 600px;
+    line-height: 1.6;
+    font-style: italic;
+    background: none;
+    text-shadow: none;
+    padding: 0;
+}
+
+form {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 700px;
     margin: 0 auto;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 24px var(--card-shadow);
+    border: 1px solid var(--border-color, rgba(0,0,0,0.1));
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
 }
 
 form label {
     display: block;
-    margin-bottom: 8px;
+    margin: 20px 0 8px;
     font-weight: 600;
-    color: #1B1F3B;
+    color: var(--text-color);
     font-size: 0.95rem;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-left: 5px;
+}
+
+form label:first-child {
+    margin-top: 0;
+}
+
+form label::after {
+    content: ':';
+    margin-left: 2px;
+    color: var(--nav-hover);
 }
 
 form input,
 form textarea,
 form select {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #C3DFE0;
-    border-radius: 6px;
-    background-color: #F9F9F9;
+    padding: 14px 18px;
+    margin-bottom: 5px;
+    border: 2px solid var(--border-color, #e0e0e0);
+    border-radius: 8px;
+    background-color: var(--input-bg, #f8f9fa);
+    color: var(--text-color);
     font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 form input:focus,
 form textarea:focus,
 form select:focus {
     outline: none;
-    border-color: #5B8266;
-    box-shadow: 0 0 0 2px rgba(91, 130, 102, 0.2);
+    border-color: var(--nav-hover);
+    box-shadow: 0 0 0 3px rgba(53, 129, 184, 0.2);
+    background-color: var(--input-focus-bg, #ffffff);
+    transform: translateY(-1px);
+}
+
+form input::placeholder,
+form textarea::placeholder {
+    color: var(--text-color);
+    opacity: 0.5;
 }
 
 form textarea {
-    min-height: 120px;
+    min-height: 150px;
     resize: vertical;
+    line-height: 1.6;
 }
 
 form button {
-    background-color: #3581B8;
+    background: linear-gradient(135deg, var(--nav-active), var(--nav-hover));
     color: white;
     border: none;
-    padding: 12px 30px;
-    border-radius: 6px;
+    padding: 14px 36px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
     font-size: 1rem;
-    transition: all 0.3s ease;
-    width: auto;
-    display: inline-block;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin-top: 20px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+form button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
 }
 
 form button:hover {
-    background-color: #2a6a9e;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+form button:hover::before {
+    left: 100%;
+}
+
+form button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 form button:disabled {
-    background-color: #a0c4e4;
+    background: var(--disabled-bg, #a0c4e4);
+    color: var(--disabled-text, #f0f0f0);
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
+    opacity: 0.7;
 }
 
 /* Success and Error Messages */
 #confirmation {
-    margin: 20px auto;
-    max-width: 600px;
-    padding: 0 15px;
+    margin: 30px auto;
+    max-width: 700px;
+    padding: 0 40px;
     display: none;
 }
 
 .success-message,
 .error-message {
-    padding: 15px 20px;
-    border-radius: 6px;
-    margin: 10px 0;
+    padding: 18px 25px;
+    border-radius: 8px;
+    margin: 15px 0;
     font-weight: 500;
     display: flex;
     align-items: center;
-    animation: slideIn 0.3s ease-out;
+    animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background-color: var(--card-bg);
+    box-shadow: 0 4px 12px var(--card-shadow);
+    border-left: 4px solid transparent;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.success-message::before,
+.error-message::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    z-index: 0;
 }
 
 .success-message {
-    background-color: #e8f5e9;
     color: #2e7d32;
-    border-left: 4px solid #4caf50;
+    border-color: #4caf50;
+    background-color: rgba(76, 175, 80, 0.05);
+}
+
+.success-message::before {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), transparent);
 }
 
 .error-message {
-    background-color: #ffebee;
     color: #c62828;
-    border-left: 4px solid #f44336;
+    border-color: #f44336;
+    background-color: rgba(244, 67, 54, 0.05);
+}
+
+.error-message::before {
+    background: linear-gradient(135deg, rgba(244, 67, 54, 0.1), transparent);
+}
+
+.success-message::after,
+.error-message::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: currentColor;
+    animation: progress 3s ease-out forwards;
+}
+
+@keyframes progress {
+    to {
+        width: 100%;
+    }
 }
 
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-15px) scale(0.98);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    main {
+        padding: 1.5rem;
+    }
+    
+    main header h1 {
+        font-size: 2rem;
+        margin-bottom: 8px;
+    }
+    
+    main header h2 {
+        font-size: 1.05rem;
+        padding: 0 5px;
+        margin-top: 8px;
+    }
+    
     form {
-        padding: 15px;
+        padding: 25px 20px;
+        width: 100%;
+        border-radius: 8px;
+    }
+    
+    form input,
+    form textarea,
+    form select {
+        padding: 12px 15px;
     }
     
     form button {
         width: 100%;
-        padding: 14px;
+        padding: 15px;
+        font-size: 0.95rem;
+    }
+    
+    #confirmation {
+        padding: 0 10px;
+        margin: 20px auto;
+    }
+    
+    .success-message,
+    .error-message {
+        padding: 15px 20px;
+        font-size: 0.95rem;
     }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    nav a {
-      display: block;
-      margin: 10px 0;
+/* Extra small devices */
+@media (max-width: 480px) {
+    main header h1 {
+        font-size: 1.8rem;
+        margin-bottom: 6px;
     }
-  
+    
+    main header h2 {
+        font-size: 1rem;
+        margin-top: 6px;
+    }
+    
     form {
-      width: 90%;
+        padding: 20px 15px;
     }
-  }
+    
+    form label {
+        margin: 15px 0 6px;
+        font-size: 0.9rem;
+    }
+}
