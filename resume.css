@@ -228,7 +228,7 @@ main {
 
 @media (max-width: 768px) {
   body {
-    padding-top: calc(var(--nav-height) * 1.5); /* Add more space at the top */
+    padding-top: var(--nav-height); /* Reduced space at the top */
   }
   
   .nav-container {

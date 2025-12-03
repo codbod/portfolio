@@ -99,26 +99,65 @@ function loadNavbar() {
     
     // Add event listener for mobile menu toggle
     const menuToggle = document.querySelector('.menu-toggle');
-    if (menuToggle) {
-      menuToggle.addEventListener('click', toggleMobileMenu);
-      menuToggle.setAttribute('aria-expanded', 'false');
-    }
+    const navLinks = document.querySelector('.nav-links');
+    const navContainer = document.querySelector('.nav-container');
+    const themeToggle = document.querySelector('.theme-switch-container');
     
-    // Close menu when clicking on a nav link (for mobile)
-    const navLinks = document.querySelectorAll('.nav-links a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        const navLinks = document.querySelector('.nav-links');
-        const menuToggle = document.querySelector('.menu-toggle');
-        if (navLinks && menuToggle) {
+    // Toggle mobile menu
+    if (menuToggle) {
+      menuToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        this.setAttribute('aria-expanded', 
+          this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+        );
+      });
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!navContainer.contains(e.target) && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Update active nav link
+    const currentLocation = window.location.href;
+    const navLinksList = document.querySelectorAll('.nav-links a');
+    
+    navLinksList.forEach(link => {
+      if (link.href === currentLocation) {
+        link.classList.add('active');
+      }
+
+      link.addEventListener('click', function(e) {
+        // Remove active class from all links
+        navLinksList.forEach(l => l.classList.remove('active'));
+        // Add active class to clicked link
+        this.classList.add('active');
+        
+        // Close mobile menu if open
+        if (window.innerWidth <= 768) {
           navLinks.classList.remove('active');
           menuToggle.setAttribute('aria-expanded', 'false');
         }
       });
     });
+
+    // Handle window resize
+    function handleResize() {
+      if (window.innerWidth > 768) {
+        navLinks.classList.remove('active');
+        if (menuToggle) {
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      }
+    }
+
+    window.addEventListener('resize', handleResize);
     
-    // Close menu when clicking outside
-    document.addEventListener('click', handleClickOutside);
+    // Initialize
+    handleResize();
     
     return navElement;
   } catch (error) {
