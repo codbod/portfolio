@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#1B1F3B">
   <title>Resume – Cody Yeung</title>
+  <meta name="description"
+    content="View the resume of Cody Yeung, specializing in Information Technology, Networking, and Security.">
+  <meta property="og:title" content="Resume – Cody Yeung">
+  <meta property="og:description" content="Professional resume of Cody Yeung - IT Support & Networking Specialist.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://codbod.github.io/portfolio/resume.html">
+  <meta property="og:image" content="https://codbod.github.io/portfolio/headshot_small.jpg">
   <script>
     // Apply theme before any content loads
-    (function() {
+    (function () {
       const savedTheme = localStorage.getItem('theme') || 'light';
       document.documentElement.setAttribute('data-theme', savedTheme);
-      
+
       // Add a class to the html element for touch devices
       if ('ontouchstart' in window || navigator.maxTouchPoints) {
         document.documentElement.classList.add('touch-device');
@@ -24,22 +32,23 @@
   <script src="transitions.js" defer></script>
   <style>
     /* Critical CSS for mobile to prevent layout shifts */
-    html, body {
+    html,
+    body {
       overflow-x: hidden;
       width: 100%;
     }
-    
+
     /* Prevent horizontal scrolling on mobile */
     .resume-container {
       overflow: hidden;
     }
-    
+
     /* Improve touch targets for mobile */
     @media (max-width: 768px) {
       .nav-links a {
         padding: 15px 20px;
       }
-      
+
       /* Ensure content doesn't get hidden behind fixed elements */
       body {
         padding-bottom: 20px;
@@ -47,6 +56,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- Navigation will be loaded here by nav.js -->
@@ -54,6 +64,18 @@
   <!-- Main Content -->
 
   <main class="resume-container">
+    <div class="resume-actions" style="text-align: center; margin: 0.5rem 0 0.25rem 0; display: none;">
+      <a href="Resume.pdf" download class="download-btn-mobile"
+        style="display: inline-block; padding: 6px 14px; background: var(--nav-active); color: white; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 0.85rem;">Download
+        Resume (PDF)</a>
+    </div>
+    <style>
+      @media (max-width: 768px) {
+        .resume-actions {
+          display: block !important;
+        }
+      }
+    </style>
     <iframe src="Resume.pdf" class="resume-iframe" style="width: 90%; height: 90vh;"></iframe>
   </main>
 </body>
@@ -66,4 +88,5 @@
   </p>
   <p class="footer-note">Aspiring IT Specialist | Problem Solver | Tech Enthusiast</p>
 </footer>
+
 </html>

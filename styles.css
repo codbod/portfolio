@@ -27,7 +27,10 @@
 }
 
 /* Smooth transitions for main content */
-main, .sidebar, .site-footer, .nav-container {
+main,
+.sidebar,
+.site-footer,
+.nav-container {
   transition: opacity 120ms ease-out, transform 120ms ease-out;
   will-change: transform, opacity;
 }
@@ -59,7 +62,8 @@ html {
 }
 
 /* Prevent transitions during initial page load */
-body:not(.loaded), body:not(.loaded) * {
+body:not(.loaded),
+body:not(.loaded) * {
   transition: none !important;
 }
 
@@ -76,6 +80,13 @@ body:not(.loaded), body:not(.loaded) * {
   --sidebar-text: #ffffff;
   --card-bg: #ffffff;
   --card-shadow: rgba(0, 0, 0, 0.1);
+
+  /* Z-Index Layers */
+  --z-nav: 1000;
+  --z-theme-switch: 1001;
+  --z-sidebar: 1100;
+  --z-sidebar-toggle: 1200;
+  --z-overlay: 10000;
 }
 
 [data-theme="dark"] {
@@ -106,7 +117,8 @@ body {
   color: var(--text-color);
   line-height: 1.6;
   margin: 0;
-  padding-top: 60px; /* Fixed padding for navbar */
+  padding-top: 60px;
+  /* Fixed padding for navbar */
   min-height: 100vh;
   overflow-x: hidden;
   display: flex;
@@ -234,15 +246,19 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-  height: 70px; /* Fixed height */
+  height: 70px;
+  /* Fixed height */
   background-color: var(--nav-bg);
   padding: 10px 0;
   text-align: center;
   margin: 0;
-  z-index: 1000; /* Higher z-index to stay above content */
+  z-index: 1000;
+  /* Higher z-index to stay above content */
   box-shadow: 0 2px 5px var(--card-shadow);
-  will-change: transform; /* Optimize for animations */
-  transform: translateZ(0); /* Force hardware acceleration */
+  will-change: transform;
+  /* Optimize for animations */
+  transform: translateZ(0);
+  /* Force hardware acceleration */
   display: flex;
   align-items: center;
 }
@@ -269,7 +285,8 @@ nav {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #a0aec0; /* Lighter gray for light mode */
+  background-color: #a0aec0;
+  /* Lighter gray for light mode */
   transition: .4s;
   border-radius: 34px;
   display: flex;
@@ -353,7 +370,23 @@ nav {
 }
 
 /* Ensure all text elements use the theme text color */
-p, h1, h2, h3, h4, h5, h6, li, td, th, label, input, textarea, select, .about-content, .experience-preview, .experience-full {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+td,
+th,
+label,
+input,
+textarea,
+select,
+.about-content,
+.experience-preview,
+.experience-full {
   color: var(--text-color);
   transition: color 0.3s ease;
 }
@@ -613,44 +646,66 @@ body.with-sidebar.sidebar-visible .sidebar {
   .sidebar {
     transform: translateX(-100%);
   }
-  
+
   /* Only show sidebar when explicitly toggled on mobile */
   body.with-sidebar.sidebar-visible .sidebar {
     transform: translateX(0);
   }
-  
-  main, nav, .site-footer {
+
+  main,
+  nav,
+  .site-footer {
     width: 100%;
     max-width: 100%;
   }
-  
+
   /* Navigation adjustments for mobile */
   nav {
     justify-content: flex-start;
     padding: 10px 5px;
     -webkit-overflow-scrolling: touch;
   }
-  
+
   nav a {
     font-size: 0.9em;
     padding: 5px 12px;
     margin: 0 5px;
   }
-  
+
   /* Hide the toggle button on mobile */
   .sidebar-toggle {
-    display: none !important;
+    display: flex !important;
   }
-  
+
   /* Adjust main content padding on mobile */
   main {
     padding: 1rem;
   }
-  
+
   body:not(.sidebar-hidden) main {
     max-width: 100%;
     margin: 0;
     padding: 1rem;
+  }
+
+  /* Fix theme switch overlap on mobile */
+  .theme-switch-container {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin-right: 5px;
+  }
+
+  .nav-container {
+    justify-content: space-between;
+  }
+
+  .nav-center {
+    margin: 0;
+    flex: 1;
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -678,6 +733,7 @@ body.with-sidebar.sidebar-visible .sidebar {
   margin-bottom: 0.25rem;
   color: var(--nav-hover);
 }
+
 .sidebar p {
   font-size: 0.9rem;
   color: #5B8266;
@@ -694,6 +750,7 @@ body.with-sidebar.sidebar-visible .sidebar {
   background: var(--sidebar-bg);
   transition: color 0.2s;
 }
+
 .sidebar .contact-info a:hover {
   color: var(--nav-hover);
 }
@@ -710,6 +767,7 @@ footer {
   body.with-sidebar {
     display: block;
   }
+
   .sidebar {
     display: none;
   }
@@ -782,3 +840,42 @@ footer {
   font-size: 0.95em;
   color: #C3DFE0;
 }
+/* Mobile Navbar Overrides - Final Fix */
+@media (max-width: 1024px) {
+  .nav-container {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 10px !important;
+  }
+
+  .theme-switch-container {
+    position: static !important;
+    transform: scale(0.85) !important;
+    margin: 0 !important;
+    left: auto !important;
+    top: auto !important;
+  }
+
+  .nav-center {
+    margin: 0 !important;
+    flex: 1 !important;
+    display: flex !important;
+    justify-content: center !important;
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+  }
+
+  .nav-links {
+    gap: 5px !important;
+    width: 100% !important;
+    justify-content: space-evenly !important;
+  }
+  
+  nav a {
+    padding: 8px 8px !important;
+    font-size: 0.85rem !important;
+  }
+}
+

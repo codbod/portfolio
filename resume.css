@@ -227,78 +227,27 @@ main {
 }
 
 @media (max-width: 768px) {
-  body {
-    padding-top: var(--nav-height); /* Reduced space at the top */
-  }
+  /* Use global navbar styles from styles.css */
   
-  .nav-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 1rem;
-    height: auto;
-    min-height: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    transform: none;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Navigation links on mobile */
-  .nav-links {
-    display: flex;
-    gap: 15px;
-    margin: 0;
-    padding: 5px 0;
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
+  .resume-container {
+    padding-top: 80px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
-  /* Download button on mobile */
   .nav-container .download-resume-btn {
-    position: static;
-    margin: 5px auto 0;
-    padding: 10px 0;
-    justify-content: center;
-    width: 100%;
-    order: 3;
-    background-color: var(--nav-bg);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
+    display: none !important;
   }
-  
-  .theme-switch-container {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    margin: 0;
+
+  .resume-actions {
+    display: block !important;
+    margin-bottom: 5px;
   }
-  
-  /* Adjust main content spacing */
-  .resume-container {
-    padding-top: calc(var(--nav-height) + 20px);
-  }
-  
-  .download-resume-btn .download-nav-btn {
-    padding: 6px 20px;
-    font-size: 0.9em;
-    border-radius: 14px;
-  }
-  
-  .resume-container {
-    padding: 15px;
-    min-height: calc(100vh - var(--nav-height) - 40px);
-  }
-  
+
   .resume-iframe {
     width: 100% !important;
-    height: calc(100vh - 180px) !important; /* Adjusted height for better mobile view */
-    margin-top: 10px;
+    height: calc(100vh - 140px) !important;
+    margin-top: 0;
   }
 }
 
