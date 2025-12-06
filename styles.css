@@ -80,6 +80,7 @@ body:not(.loaded) * {
   --sidebar-text: #ffffff;
   --card-bg: #ffffff;
   --card-shadow: rgba(0, 0, 0, 0.1);
+  --placeholder-color: #6b7280;
 
   /* Z-Index Layers */
   --z-nav: 1000;
@@ -100,6 +101,7 @@ body:not(.loaded) * {
   --sidebar-text: #ffffff;
   --card-bg: #16213e;
   --card-shadow: rgba(0, 0, 0, 0.3);
+  --placeholder-color: #9ca3af;
 }
 
 /* General Reset & Typography */
@@ -613,7 +615,7 @@ body.with-sidebar.sidebar-visible .sidebar {
   display: none;
   position: fixed;
   bottom: 30px;
-  right: 30px;
+  left: 30px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -840,6 +842,7 @@ footer {
   font-size: 0.95em;
   color: #C3DFE0;
 }
+
 /* Mobile Navbar Overrides - Final Fix */
 @media (max-width: 1024px) {
   .nav-container {
@@ -872,10 +875,9 @@ footer {
     width: 100% !important;
     justify-content: space-evenly !important;
   }
-  
+
   nav a {
     padding: 8px 8px !important;
     font-size: 0.85rem !important;
   }
 }
-
