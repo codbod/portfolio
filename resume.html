@@ -65,10 +65,28 @@
 
   <main class="resume-container">
     <div class="resume-actions" style="text-align: center; margin: 0.5rem 0 0.25rem 0; display: none;">
-      <a href="Resume.pdf" download class="download-btn-mobile"
-        style="display: inline-block; padding: 6px 14px; background: var(--nav-active); color: white; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 0.85rem;">Download
+      <a href="#" onclick="downloadResume(); return false;" class="download-btn-mobile"
+        style="display: inline-block; padding: 6px 14px; background: var(--nav-active); color: white; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 0.85rem; cursor: pointer;">Download
         Resume (PDF)</a>
     </div>
+    <script>
+      function downloadResume() {
+        fetch('Resume.pdf')
+          .then(response => response.blob())
+          .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'Cody_Yeung_Resume.pdf';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+          })
+          .catch(error => console.error('Download failed:', error));
+      }
+    </script>
     <style>
       @media (max-width: 768px) {
         .resume-actions {

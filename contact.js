@@ -26,9 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
     phoneInput.addEventListener("input", function (e) {
         let numbers = e.target.value.replace(/\D/g, '');
         if (numbers.length > 3 && numbers.length <= 6) {
-            numbers = numbers.slice(0,3) + '-' + numbers.slice(3);
+            numbers = numbers.slice(0, 3) + '-' + numbers.slice(3);
         } else if (numbers.length > 6) {
-            numbers = numbers.slice(0,3) + '-' + numbers.slice(3,6) + '-' + numbers.slice(6,10);
+            numbers = numbers.slice(0, 3) + '-' + numbers.slice(3, 6) + '-' + numbers.slice(6, 10);
         }
         e.target.value = numbers;
     });
@@ -41,10 +41,10 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         `;
         confirmationDiv.style.display = 'block';
-        
+
         // Scroll to the message
         confirmationDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        
+
         // Hide the message after 5 seconds
         setTimeout(() => {
             confirmationDiv.style.display = 'none';
@@ -54,10 +54,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Handle form submission
     submitButton.addEventListener("click", async function (event) {
         event.preventDefault();
-        
+
         // If the form is already being submitted, don't do anything
         if (submitButton.disabled) return;
-        
+
         // Check cooldown period
         const currentTime = Date.now();
         if (currentTime - lastSubmissionTime < SUBMISSION_COOLDOWN) {
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
             showMessage('Please fill out all required fields!', true);
             return;
         }
-        
+
         // Validate minimum word count in message
         const wordCount = formData.message.trim().split(/\s+/).filter(word => word.length > 0).length;
         if (wordCount < MIN_WORD_COUNT) {
@@ -124,31 +124,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Send main email to you
             await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
-            
-            // Prepare auto-reply parameters
-            const autoReplyParams = {
-                to_email: formData.email,
-                to_name: `${formData.firstName} ${formData.lastName}`.trim(),
-                from_name: "Cody Yeung",
-                subject: formData.subject,
-                message: formData.message,
-                date: new Date().toLocaleString()
-            };
 
-            // Send auto-reply to the sender
-            await emailjs.send(
-                EMAILJS_SERVICE_ID,
-                EMAILJS_AUTOREPLY_TEMPLATE_ID,
-                autoReplyParams
-            );
-            showMessage('Message sent successfully! A confirmation has been sent to your email.');
-            
+            // Auto-reply feature is currently disabled
+            // The EmailJS template needs proper configuration
+            // To enable: configure template_wnl6tul in EmailJS dashboard
+
+            showMessage('Message sent successfully! Thank you for reaching out.');
+
             // Update last submission time
             lastSubmissionTime = Date.now();
-            
+
             // Reset form
             form.reset();
-            
+
         } catch (error) {
             console.error('Failed to send email:', error);
             showMessage('Failed to send message. Please try again later or contact me directly at cody.g.yeung@gmail.com', true);
