@@ -1,321 +1,323 @@
 /* === About Page Styling === */
 main {
-    padding: 2rem;
-    background-color: var(--bg-color);
-  }
-  
-  /* Section Titles */
-  main h1,
-  main h2 {
-    color: var(--text-color);
-    margin: 1.5rem 0;
-    padding: 0.5rem 1rem;
-    text-align: center;
-    display: inline-block;
-    width: auto;
-    background: transparent;
-    border-radius: 6px;
-    position: relative;
-  }
-  
-  /* Add decorative underline to section headers */
-  main h2::after {
-    content: '';
-    position: absolute;
-    width: 60px;
-    height: 3px;
-    background: var(--nav-hover);
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 2px;
-  }
-  
-  /* Paragraphs */
-  main p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: #333;
-    margin-bottom: 1rem;
-  }
-  
-  /* About Intro */
-  .about-intro p {
-    max-width: 800px;
-    margin: 0 auto 2rem auto;
-    text-align: center;
-    color: var(--text-color);
-    line-height: 1.8;
-  }
-  
-  /* Education */
-  .education-section {
-    position: relative;
-    padding: 2.5em;
-    margin: 3em 0;
-    border-radius: 12px;
-    overflow: hidden;
-    color: var(--text-color);
-    background-color: var(--card-bg);
-    box-shadow: 0 4px 12px var(--card-shadow);
-    border-left: 4px solid var(--nav-hover);
-    transition: all 0.3s ease;
-  
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 250px; 
-    text-align: center;
-  }
-  
-  /* Background image with reduced opacity */
-  .education-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url("ASU Banner.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.15;
-    z-index: 0;
-  }
-  
-  /* Keep actual content above the background */
-  .education-section * {
-    position: relative;
-    z-index: 1;
-  }
-  
-  /* Skills Snapshot */
-  .about-skills {
-    margin: 4rem 0;
-    padding: 2rem;
-    text-align: center;
-    background-color: var(--card-bg);
-    border-radius: 12px;
-    box-shadow: 0 2px 8px var(--card-shadow);
-    transition: all 0.3s ease;
-  }
-  
-  .about-skills ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-    padding: 0;
-  }
-  
-  .about-skills li {
-    background-color: var(--nav-hover);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: 500;
-    box-shadow: 0 2px 8px var(--card-shadow);
-    transition: all 0.3s ease;
-  }
-  
-  .about-skills li:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px var(--card-shadow);
-  }
-  
-  /* Experience Section */
-  .about-experience {
-    margin: 4rem 0;
-    padding: 2rem 0;
-  }
-  
-  .experience-item {
-    background-color: var(--card-bg);
-    border-left: 4px solid var(--nav-hover);
-    padding: 2rem;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 12px var(--card-shadow);
-    transition: all 0.3s ease;
-  }
-  
-  .experience-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px var(--card-shadow);
-  }
-  
-  .experience-item h3 {
-    color: var(--nav-hover);
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
-  }
-  
-  .experience-item p {
-    margin: 0.6rem 0;
-    color: var(--text-color);
-    line-height: 1.7;
-  }
-  
-  .experience-item strong {
-    color: var(--nav-active);
-  }
-  
-  /* Experience Section: Show More / Expandable */
-  .experience-full.hidden {
-    display: none;
-  }
-  
-  .show-more-btn {
-    background-color: var(--nav-hover);
-    color: white;
-    border: none;
-    padding: 0.7rem 1.5rem;
-    border-radius: 6px;
-    font-weight: 600;
-    margin-top: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .show-more-btn:hover {
-    background-color: var(--nav-active);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px var(--card-shadow);
-  }
-  
-  .show-more-btn:active {
-    transform: translateY(0);
-  }
-  
-  /* Fun Facts */
-  .about-fun ul {
-    list-style-type: disc;
-    max-width: 700px;
-    margin: 1rem auto 2rem auto;
-    padding-left: 2rem;
-    color: #1B1F3B;
-    font-size: 1.1rem;
-  }
-  
-  .about-fun li {
-    margin-bottom: 0.6rem;
-  }
-  
-  /* Call to Action */
-  .about-cta {
-    background-color: #3581B8;
-    color: white;
-    padding: 2rem;
-    text-align: center;
-    border-radius: 12px;
-    margin-top: 3rem;
-  }
-  
-  .about-cta h2 {
-    color: white;
-  }
-  
-  .about-cta a {
-    color: #F9ADA0;
-    font-weight: bold;
-    text-decoration: underline;
-  }
-  
-  .about-cta a:hover {
-    color: #ffffff;
-    text-shadow: 0 0 6px #ffffff;
-  }
-  
-  .about-top {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-bottom: 3rem;
-  }
-  
-  /* Control width of each box */
-  .about-intro, .about-fun {
-    flex: 1 1 45%;
-    background-color: var(--card-bg);
-    padding: 2.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px var(--card-shadow);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-  }
-  
-  [data-theme="dark"] .about-intro,
-  [data-theme="dark"] .about-fun {
-    border: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  .about-intro:hover, .about-fun:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px var(--card-shadow);
-  }
-  
-  /* Make About Intro text left-aligned again */
-  .about-intro p {
-    text-align: left;
-    margin: 0;
-  }
-  
-  /* Fun facts list smaller and tight */
-  .about-fun ul {
-    padding-left: 1.5rem;
-    margin-top: 1.5rem;
-    text-align: left;
-  }
-  
-  .about-fun li {
-    margin-bottom: 0.8rem;
-    color: var(--text-color);
-    position: relative;
-    padding-left: 1.5rem;
-    line-height: 1.6;
-  }
-  
-  .about-fun li::before {
-    content: '•';
-    color: var(--nav-hover);
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-    font-size: 1.2em;
-    line-height: 1;
-  }
-  
-  .about-fun li {
-    margin-bottom: 0.5rem;
-  }
-  
+  padding: 2rem;
+  background-color: var(--bg-color);
+}
+
+/* Section Titles */
+main h1,
+main h2 {
+  color: var(--text-color);
+  margin: 1.5rem 0;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  display: inline-block;
+  width: auto;
+  background: transparent;
+  border-radius: 6px;
+  position: relative;
+}
+
+/* Add decorative underline to section headers */
+main h2::after {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 3px;
+  background: var(--nav-hover);
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+/* Paragraphs */
+main p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* About Intro */
+.about-intro p {
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+  text-align: center;
+  color: var(--text-color);
+  line-height: 1.8;
+}
+
+/* Education */
+.education-section {
+  position: relative;
+  padding: 2.5em;
+  margin: 3em 0;
+  border-radius: 12px;
+  overflow: hidden;
+  color: var(--text-color);
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 12px var(--card-shadow);
+  border-left: 4px solid var(--nav-hover);
+  transition: all 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+  text-align: center;
+}
+
+/* Background image with reduced opacity */
+.education-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("ASU Banner.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+/* Keep actual content above the background */
+.education-section * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Skills Snapshot */
+.about-skills {
+  margin: 4rem 0;
+  padding: 2rem;
+  text-align: center;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--card-shadow);
+  transition: all 0.3s ease;
+}
+
+.about-skills ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  padding: 0;
+}
+
+.about-skills li {
+  background-color: var(--nav-hover);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px var(--card-shadow);
+  transition: all 0.3s ease;
+}
+
+.about-skills li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--card-shadow);
+}
+
+/* Experience Section */
+.about-experience {
+  margin: 4rem 0;
+  padding: 2rem 0;
+}
+
+.experience-item {
+  background-color: var(--card-bg);
+  border-left: 4px solid var(--nav-hover);
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px var(--card-shadow);
+  transition: all 0.3s ease;
+}
+
+.experience-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px var(--card-shadow);
+}
+
+.experience-item h3 {
+  color: var(--nav-hover);
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.experience-item p {
+  margin: 0.6rem 0;
+  color: var(--text-color);
+  line-height: 1.7;
+}
+
+.experience-item strong {
+  color: var(--nav-active);
+}
+
+/* Experience Section: Show More / Expandable */
+.experience-full.hidden {
+  display: none;
+}
+
+.show-more-btn {
+  background-color: var(--nav-hover);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  margin-top: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.show-more-btn:hover {
+  background-color: var(--nav-active);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--card-shadow);
+}
+
+.show-more-btn:active {
+  transform: translateY(0);
+}
+
+/* Fun Facts */
+.about-fun ul {
+  list-style-type: none;
+  max-width: 700px;
+  margin: 1rem auto 2rem auto;
+  padding-left: 2rem;
+  color: #1B1F3B;
+  font-size: 1.1rem;
+}
+
+.about-fun li {
+  margin-bottom: 0.6rem;
+}
+
+/* Call to Action */
+.about-cta {
+  background-color: #3581B8;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 12px;
+  margin-top: 3rem;
+}
+
+.about-cta h2 {
+  color: white;
+}
+
+.about-cta a {
+  color: #F9ADA0;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.about-cta a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 6px #ffffff;
+}
+
+.about-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Control width of each box */
+.about-intro,
+.about-fun {
+  flex: 1 1 45%;
+  background-color: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--card-shadow);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .about-intro,
+[data-theme="dark"] .about-fun {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.about-intro:hover,
+.about-fun:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px var(--card-shadow);
+}
+
+/* Make About Intro text left-aligned again */
+.about-intro p {
+  text-align: left;
+  margin: 0;
+}
+
+/* Fun facts list smaller and tight */
+.about-fun ul {
+  padding-left: 1.5rem;
+  margin-top: 1.5rem;
+  text-align: left;
+}
+
+.about-fun li {
+  margin-bottom: 0.8rem;
+  color: var(--text-color);
+  position: relative;
+  padding-left: 1.5rem;
+  line-height: 1.6;
+}
+
+.about-fun li::before {
+  content: '•';
+  color: var(--nav-hover);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.about-fun li {
+  margin-bottom: 0.5rem;
+}
+
 .about-intro p,
 .about-fun ul,
 .about-fun li {
-  font-size: 1.2rem; 
-  line-height: 1.8; 
+  font-size: 1.2rem;
+  line-height: 1.8;
 }
 
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    main {
-      padding: 1rem;
-    }
-  
-    .about-skills ul {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .about-education,
-    .experience-item {
-      text-align: left;
-    }
-    .about-top {
-      flex-direction: column;
-    }
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  main {
+    padding: 1rem;
   }
-  
+
+  .about-skills ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-education,
+  .experience-item {
+    text-align: left;
+  }
+
+  .about-top {
+    flex-direction: column;
+  }
+}
