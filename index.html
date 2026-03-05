@@ -47,9 +47,156 @@
 
   <!-- Intro Animation Overlay -->
   <div id="intro-overlay">
-    <h1 id="intro-headline">Hi, I'm Cody</h1>
-    <p id="intro-subtitle">Networking Specialist · IT Professional</p>
-    <div id="intro-accent"></div>
+
+    <!-- Phase 1: Network Packet Trace -->
+    <div id="packet-scene">
+      <!-- Tooltip that follows each hop -->
+      <div id="hop-tooltip" class="hop-tooltip"></div>
+
+      <svg id="network-svg" viewBox="0 0 1100 340" preserveAspectRatio="xMidYMid meet"
+        xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Glow filter for the packet dot -->
+          <filter id="pkt-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="6" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <!-- Softer glow for hop icons -->
+          <filter id="hop-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- === Connection Paths === -->
+        <path id="path-0" d="M 100,170 C 180,170 200,100 280,100" fill="none" stroke="rgba(0,212,255,0.08)"
+          stroke-width="1.5" />
+        <path id="path-1" d="M 280,100 C 360,100 380,170 460,170" fill="none" stroke="rgba(0,212,255,0.08)"
+          stroke-width="1.5" />
+        <path id="path-2" d="M 460,170 C 540,170 560,100 640,100" fill="none" stroke="rgba(0,212,255,0.08)"
+          stroke-width="1.5" />
+        <path id="path-3" d="M 640,100 C 720,100 740,170 820,170" fill="none" stroke="rgba(0,212,255,0.08)"
+          stroke-width="1.5" />
+        <path id="path-4" d="M 820,170 C 900,170 920,100 1000,100" fill="none" stroke="rgba(0,212,255,0.08)"
+          stroke-width="1.5" />
+
+        <!-- Lit-up path overlays (animated via stroke-dashoffset) -->
+        <path id="trail-0" d="M 100,170 C 180,170 200,100 280,100" fill="none" stroke="rgba(0,212,255,0.5)"
+          stroke-width="1.5" stroke-dasharray="0" stroke-dashoffset="0" opacity="0" />
+        <path id="trail-1" d="M 280,100 C 360,100 380,170 460,170" fill="none" stroke="rgba(0,212,255,0.5)"
+          stroke-width="1.5" stroke-dasharray="0" stroke-dashoffset="0" opacity="0" />
+        <path id="trail-2" d="M 460,170 C 540,170 560,100 640,100" fill="none" stroke="rgba(0,212,255,0.5)"
+          stroke-width="1.5" stroke-dasharray="0" stroke-dashoffset="0" opacity="0" />
+        <path id="trail-3" d="M 640,100 C 720,100 740,170 820,170" fill="none" stroke="rgba(0,212,255,0.5)"
+          stroke-width="1.5" stroke-dasharray="0" stroke-dashoffset="0" opacity="0" />
+        <path id="trail-4" d="M 820,170 C 900,170 920,100 1000,100" fill="none" stroke="rgba(0,212,255,0.5)"
+          stroke-width="1.5" stroke-dasharray="0" stroke-dashoffset="0" opacity="0" />
+
+        <!-- === Device Icons (hop groups) === -->
+
+        <!-- Hop 0: User PC -->
+        <g id="hop-0" class="hop-node" opacity="0.3">
+          <rect x="75" y="150" width="50" height="36" rx="4" fill="none" stroke="rgba(0,212,255,0.4)"
+            stroke-width="1.2" />
+          <line x1="90" y1="186" x2="90" y2="196" stroke="rgba(0,212,255,0.4)" stroke-width="1.2" />
+          <line x1="110" y1="186" x2="110" y2="196" stroke="rgba(0,212,255,0.4)" stroke-width="1.2" />
+          <line x1="82" y1="196" x2="118" y2="196" stroke="rgba(0,212,255,0.4)" stroke-width="1.2" />
+          <!-- Screen detail -->
+          <rect x="82" y="155" width="36" height="22" rx="2" fill="none" stroke="rgba(0,212,255,0.25)"
+            stroke-width="0.8" />
+          <text x="100" y="228" text-anchor="middle" fill="rgba(0,212,255,0.5)" font-size="11"
+            font-family="Inter, sans-serif" font-weight="500">Your PC</text>
+        </g>
+
+        <!-- Hop 1: Wi-Fi AP -->
+        <g id="hop-1" class="hop-node" opacity="0.3">
+          <!-- Antenna base -->
+          <line x1="280" y1="110" x2="280" y2="78" stroke="rgba(0,212,255,0.4)" stroke-width="1.2" />
+          <!-- Signal waves -->
+          <path d="M 265,75 Q 280,60 295,75" fill="none" stroke="rgba(0,212,255,0.3)" stroke-width="1" />
+          <path d="M 258,80 Q 280,55 302,80" fill="none" stroke="rgba(0,212,255,0.25)" stroke-width="1" />
+          <path d="M 251,85 Q 280,50 309,85" fill="none" stroke="rgba(0,212,255,0.2)" stroke-width="1" />
+          <!-- Base unit -->
+          <rect x="268" y="110" width="24" height="14" rx="3" fill="none" stroke="rgba(0,212,255,0.4)"
+            stroke-width="1.2" />
+          <text x="280" y="148" text-anchor="middle" fill="rgba(0,212,255,0.5)" font-size="11"
+            font-family="Inter, sans-serif" font-weight="500">Wi-Fi AP</text>
+        </g>
+
+        <!-- Hop 2: Switch -->
+        <g id="hop-2" class="hop-node" opacity="0.3">
+          <rect x="435" y="155" width="50" height="30" rx="4" fill="none" stroke="rgba(0,212,255,0.4)"
+            stroke-width="1.2" />
+          <!-- Port indicators -->
+          <circle cx="448" cy="165" r="2" fill="rgba(0,212,255,0.3)" />
+          <circle cx="456" cy="165" r="2" fill="rgba(0,212,255,0.3)" />
+          <circle cx="464" cy="165" r="2" fill="rgba(0,212,255,0.3)" />
+          <circle cx="472" cy="165" r="2" fill="rgba(0,212,255,0.3)" />
+          <circle cx="448" cy="175" r="2" fill="rgba(0,212,255,0.3)" />
+          <circle cx="456" cy="175" r="2" fill="rgba(0,212,255,0.3)" />
+          <circle cx="464" cy="175" r="2" fill="rgba(0,212,255,0.3)" />
+          <circle cx="472" cy="175" r="2" fill="rgba(0,212,255,0.3)" />
+          <text x="460" y="210" text-anchor="middle" fill="rgba(0,212,255,0.5)" font-size="11"
+            font-family="Inter, sans-serif" font-weight="500">Switch</text>
+        </g>
+
+        <!-- Hop 3: Router -->
+        <g id="hop-3" class="hop-node" opacity="0.3">
+          <circle cx="640" cy="100" r="22" fill="none" stroke="rgba(0,212,255,0.4)" stroke-width="1.2" />
+          <!-- Router arrows (cross pattern) -->
+          <line x1="628" y1="100" x2="652" y2="100" stroke="rgba(0,212,255,0.3)" stroke-width="1" />
+          <line x1="640" y1="88" x2="640" y2="112" stroke="rgba(0,212,255,0.3)" stroke-width="1" />
+          <polygon points="651,97 651,103 655,100" fill="rgba(0,212,255,0.3)" />
+          <polygon points="629,97 629,103 625,100" fill="rgba(0,212,255,0.3)" />
+          <polygon points="637,89 643,89 640,85" fill="rgba(0,212,255,0.3)" />
+          <polygon points="637,111 643,111 640,115" fill="rgba(0,212,255,0.3)" />
+          <text x="640" y="140" text-anchor="middle" fill="rgba(0,212,255,0.5)" font-size="11"
+            font-family="Inter, sans-serif" font-weight="500">Router</text>
+        </g>
+
+        <!-- Hop 4: ISP Cloud -->
+        <g id="hop-4" class="hop-node" opacity="0.3">
+          <path
+            d="M 795,175 Q 795,150 815,148 Q 820,132 840,135 Q 855,125 868,138 Q 882,135 882,150 Q 895,155 890,170 Q 892,180 878,182 L 810,182 Q 793,182 795,175 Z"
+            fill="none" stroke="rgba(0,212,255,0.4)" stroke-width="1.2" />
+          <text x="840" y="210" text-anchor="middle" fill="rgba(0,212,255,0.5)" font-size="11"
+            font-family="Inter, sans-serif" font-weight="500">ISP</text>
+        </g>
+
+        <!-- Hop 5: Server -->
+        <g id="hop-5" class="hop-node" opacity="0.3">
+          <!-- Server rack -->
+          <rect x="980" y="78" width="40" height="48" rx="4" fill="none" stroke="rgba(0,212,255,0.4)"
+            stroke-width="1.2" />
+          <!-- Rack slots -->
+          <line x1="985" y1="92" x2="1015" y2="92" stroke="rgba(0,212,255,0.25)" stroke-width="0.8" />
+          <line x1="985" y1="106" x2="1015" y2="106" stroke="rgba(0,212,255,0.25)" stroke-width="0.8" />
+          <!-- LEDs -->
+          <circle cx="990" cy="86" r="1.5" fill="rgba(0,212,255,0.3)" />
+          <circle cx="990" cy="99" r="1.5" fill="rgba(0,212,255,0.3)" />
+          <circle cx="990" cy="113" r="1.5" fill="rgba(0,212,255,0.3)" />
+          <text x="1000" y="148" text-anchor="middle" fill="rgba(0,212,255,0.5)" font-size="11"
+            font-family="Inter, sans-serif" font-weight="500">Server</text>
+        </g>
+
+        <!-- === Packet Dot === -->
+        <circle id="packet-dot" cx="100" cy="170" r="4" fill="#00d4ff" filter="url(#pkt-glow)" opacity="0" />
+      </svg>
+    </div>
+
+    <!-- Phase 2: Greeting (existing) -->
+    <div id="intro-greeting">
+      <h1 id="intro-headline">Hi, I'm Cody</h1>
+      <p id="intro-subtitle">Networking Specialist · IT Professional</p>
+      <div id="intro-accent"></div>
+    </div>
+
   </div>
 
   <aside class="sidebar">
