@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <title>About Me – Cody Yeung</title>
   <meta name="description"
     content="Portfolio of Cody Yeung, an aspiring Networking Specialist and IT professional at Arizona State University specializing in Azure, Cisco, and System Administration.">
@@ -16,16 +19,16 @@
   <script>
     // Apply theme before any content loads
     (function () {
-      const savedTheme = localStorage.getItem('theme') || 'light';
+      const savedTheme = localStorage.getItem('theme') || 'dark';
       document.documentElement.setAttribute('data-theme', savedTheme);
     })();
   </script>
   <script>
-    // Apply theme before page renders to prevent flash of light theme
+    // Apply theme before page renders to prevent flash
     (function () {
       const savedTheme = localStorage.getItem('theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+      const theme = savedTheme || (prefersDark ? 'dark' : 'dark');
       document.documentElement.setAttribute('data-theme', theme);
     })();
   </script>
@@ -37,6 +40,7 @@
   <script src="theme.js" defer></script>
   <script src="transitions.js" defer></script>
   <script src="intro.js" defer></script>
+  <script src="background.js" defer></script>
 </head>
 
 <body>

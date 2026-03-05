@@ -1,3 +1,7 @@
+/* ═══════════════════════════════════════════════════════════
+   Index / About Page — Enterprise Network Dashboard Theme
+   ═══════════════════════════════════════════════════════════ */
+
 /* === Intro Animation Overlay === */
 #intro-overlay {
   position: fixed;
@@ -10,27 +14,26 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #0b0e17;
-  /* Subtle radial glow for depth */
+  background: #060910;
   background:
-    radial-gradient(ellipse at 50% 40%, rgba(53, 129, 184, 0.08) 0%, transparent 60%),
-    linear-gradient(180deg, #0b0e17 0%, #101528 50%, #0b0e17 100%);
+    radial-gradient(ellipse at 50% 40%, rgba(0, 212, 255, 0.06) 0%, transparent 60%),
+    linear-gradient(180deg, #060910 0%, #0a0e17 50%, #060910 100%);
   overflow: hidden;
 }
 
-/* Faint grid pattern for tech aesthetic */
+/* Grid pattern for the intro */
 #intro-overlay::before {
   content: '';
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(53, 129, 184, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(53, 129, 184, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
   background-size: 48px 48px;
   pointer-events: none;
 }
 
-/* Intro text shared base */
+/* Intro text base */
 #intro-headline,
 #intro-subtitle {
   opacity: 0;
@@ -41,28 +44,25 @@
   z-index: 1;
 }
 
-/* Headline */
 #intro-headline {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
-  color: #e8ecf1;
+  color: #e6edf3;
   letter-spacing: -0.5px;
   margin-bottom: 0.3rem;
   background: transparent;
 }
 
-/* Subtitle */
 #intro-subtitle {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
   font-size: clamp(1rem, 2.5vw, 1.35rem);
   font-weight: 400;
-  color: rgba(100, 181, 246, 0.85);
+  color: rgba(0, 212, 255, 0.85);
   letter-spacing: 0.5px;
   background: transparent;
 }
 
-/* Animate in — headline (800ms ease-out) */
 #intro-headline.intro-visible {
   opacity: 1;
   transform: translateY(0);
@@ -70,7 +70,6 @@
     transform 800ms cubic-bezier(0.0, 0.0, 0.2, 1);
 }
 
-/* Animate in — subtitle (650ms ease-out, slightly faster) */
 #intro-subtitle.intro-visible {
   opacity: 1;
   transform: translateY(0);
@@ -78,15 +77,15 @@
     transform 650ms cubic-bezier(0.0, 0.0, 0.2, 1);
 }
 
-/* Neon accent line */
+/* Accent line */
 #intro-accent {
   width: 0;
   height: 2px;
   margin-top: 1rem;
   border-radius: 2px;
-  background: linear-gradient(90deg, transparent, rgba(100, 181, 246, 0.9), rgba(53, 129, 184, 0.7), transparent);
-  box-shadow: 0 0 8px rgba(100, 181, 246, 0.4),
-    0 0 20px rgba(100, 181, 246, 0.15);
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.9), rgba(0, 180, 216, 0.7), transparent);
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.4),
+    0 0 24px rgba(0, 212, 255, 0.15);
   transition: none;
   position: relative;
   z-index: 1;
@@ -97,20 +96,17 @@
   transition: width 400ms cubic-bezier(0.0, 0.0, 0.2, 1);
 }
 
-/* Dissolve the overlay out */
 #intro-overlay.intro-dissolve {
   opacity: 0;
   pointer-events: none;
   transition: opacity 500ms cubic-bezier(0.0, 0.0, 0.2, 1);
 }
 
-/* Homepage content — initially hidden below */
 .homepage-hidden {
   opacity: 0 !important;
   transform: translateY(20px) !important;
 }
 
-/* Homepage content — slide up + reveal */
 .homepage-reveal {
   opacity: 1 !important;
   transform: translateY(0) !important;
@@ -118,10 +114,12 @@
     transform 500ms cubic-bezier(0.0, 0.0, 0.2, 1) !important;
 }
 
-/* === About Page Styling === */
+/* ═══════════════════════════════════════════════════════
+   About Page Content
+   ═══════════════════════════════════════════════════════ */
 main {
   padding: 2rem;
-  background-color: var(--bg-color);
+  background-color: transparent;
 }
 
 /* Section Titles */
@@ -138,24 +136,25 @@ main h2 {
   position: relative;
 }
 
-/* Add decorative underline to section headers */
+/* Glowing underline accent */
 main h2::after {
   content: '';
   position: absolute;
   width: 60px;
-  height: 3px;
-  background: var(--nav-hover);
+  height: 2px;
+  background: var(--accent);
   bottom: -8px;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 2px;
+  box-shadow: 0 0 8px var(--accent-glow);
 }
 
 /* Paragraphs */
 main p {
   font-size: 1.1rem;
   line-height: 1.7;
-  color: #333;
+  color: var(--text-color);
   margin-bottom: 1rem;
 }
 
@@ -168,7 +167,9 @@ main p {
   line-height: 1.8;
 }
 
-/* Education */
+/* ═══════════════════════════════
+   Education Section — Glass Panel
+   ═══════════════════════════════ */
 .education-section {
   position: relative;
   padding: 2.5em;
@@ -176,10 +177,13 @@ main p {
   border-radius: 12px;
   overflow: hidden;
   color: var(--text-color);
-  background-color: var(--card-bg);
-  box-shadow: 0 4px 12px var(--card-shadow);
-  border-left: 4px solid var(--nav-hover);
-  transition: all 0.3s ease;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 24px var(--card-shadow);
+  border-left: 3px solid var(--accent);
+  transition: all 0.4s ease;
 
   display: flex;
   flex-direction: column;
@@ -189,7 +193,12 @@ main p {
   text-align: center;
 }
 
-/* Background image with reduced opacity */
+.education-section:hover {
+  border-color: var(--border-accent);
+  box-shadow: 0 8px 32px var(--card-shadow), 0 0 24px var(--accent-glow);
+  transform: translateY(-3px);
+}
+
 .education-section::before {
   content: "";
   position: absolute;
@@ -198,25 +207,34 @@ main p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.15;
+  opacity: 0.1;
   z-index: 0;
 }
 
-/* Keep actual content above the background */
 .education-section * {
   position: relative;
   z-index: 1;
 }
 
-/* Skills Snapshot */
+/* ═══════════════════════════════
+   Skills Snapshot — Glowing Tags
+   ═══════════════════════════════ */
 .about-skills {
   margin: 4rem 0;
   padding: 2rem;
   text-align: center;
-  background-color: var(--card-bg);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
   border-radius: 12px;
-  box-shadow: 0 2px 8px var(--card-shadow);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 24px var(--card-shadow);
+  transition: all 0.4s ease;
+}
+
+.about-skills:hover {
+  border-color: var(--border-accent);
+  box-shadow: 0 8px 32px var(--card-shadow), 0 0 20px var(--accent-glow);
 }
 
 .about-skills ul {
@@ -229,45 +247,56 @@ main p {
 }
 
 .about-skills li {
-  background-color: var(--nav-hover);
-  color: white;
+  background: var(--accent-glow);
+  color: var(--accent);
   padding: 10px 20px;
-  border-radius: 20px;
+  border-radius: 8px;
   font-weight: 500;
+  border: 1px solid var(--border-accent);
   box-shadow: 0 2px 8px var(--card-shadow);
   transition: all 0.3s ease;
+  font-size: 0.95rem;
 }
 
 .about-skills li:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px var(--card-shadow);
+  box-shadow: 0 4px 16px var(--card-shadow), 0 0 12px var(--accent-glow);
+  background: var(--accent-glow-strong);
+  border-color: var(--accent);
 }
 
-/* Experience Section */
+/* ═══════════════════════════════
+   Experience Section
+   ═══════════════════════════════ */
 .about-experience {
   margin: 4rem 0;
   padding: 2rem 0;
 }
 
 .experience-item {
-  background-color: var(--card-bg);
-  border-left: 4px solid var(--nav-hover);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-left: 3px solid var(--accent);
   padding: 2rem;
-  border-radius: 10px;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  box-shadow: 0 4px 12px var(--card-shadow);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 24px var(--card-shadow);
+  transition: all 0.4s ease;
 }
 
 .experience-item:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 16px var(--card-shadow);
+  border-color: var(--border-accent);
+  box-shadow: 0 8px 32px var(--card-shadow), 0 0 20px var(--accent-glow);
 }
 
 .experience-item h3 {
-  color: var(--nav-hover);
+  color: var(--accent);
   margin-bottom: 0.5rem;
   font-size: 1.3rem;
+  font-weight: 600;
 }
 
 .experience-item p {
@@ -277,18 +306,18 @@ main p {
 }
 
 .experience-item strong {
-  color: var(--nav-active);
+  color: var(--accent-dim);
 }
 
-/* Experience Section: Show More / Expandable */
+/* Show more / Expandable */
 .experience-full.hidden {
   display: none;
 }
 
 .show-more-btn {
-  background-color: var(--nav-hover);
-  color: white;
-  border: none;
+  background: var(--accent-glow);
+  color: var(--accent);
+  border: 1px solid var(--border-accent);
   padding: 0.7rem 1.5rem;
   border-radius: 6px;
   font-weight: 600;
@@ -301,22 +330,24 @@ main p {
 }
 
 .show-more-btn:hover {
-  background-color: var(--nav-active);
+  background: var(--accent-glow-strong);
+  box-shadow: 0 0 16px var(--accent-glow);
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px var(--card-shadow);
 }
 
 .show-more-btn:active {
   transform: translateY(0);
 }
 
-/* Fun Facts */
+/* ═══════════════════════════════
+   Fun Facts
+   ═══════════════════════════════ */
 .about-fun ul {
   list-style-type: none;
   max-width: 700px;
   margin: 1rem auto 2rem auto;
   padding-left: 2rem;
-  color: #1B1F3B;
+  color: var(--text-color);
   font-size: 1.1rem;
 }
 
@@ -324,14 +355,15 @@ main p {
   margin-bottom: 0.6rem;
 }
 
-/* Call to Action */
+/* CTA */
 .about-cta {
-  background-color: #3581B8;
+  background: linear-gradient(135deg, var(--accent-dim), var(--accent));
   color: white;
   padding: 2rem;
   text-align: center;
   border-radius: 12px;
   margin-top: 3rem;
+  box-shadow: 0 4px 24px var(--accent-glow-strong);
 }
 
 .about-cta h2 {
@@ -339,16 +371,19 @@ main p {
 }
 
 .about-cta a {
-  color: #F9ADA0;
+  color: #e6edf3;
   font-weight: bold;
   text-decoration: underline;
 }
 
 .about-cta a:hover {
   color: #ffffff;
-  text-shadow: 0 0 6px #ffffff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
+/* ═══════════════════════════════
+   About Top — Side by Side Cards
+   ═══════════════════════════════ */
 .about-top {
   display: flex;
   flex-wrap: wrap;
@@ -356,36 +391,33 @@ main p {
   margin-bottom: 3rem;
 }
 
-/* Control width of each box */
 .about-intro,
 .about-fun {
   flex: 1 1 45%;
-  background-color: var(--card-bg);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
   padding: 2.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px var(--card-shadow);
-  transition: all 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-[data-theme="dark"] .about-intro,
-[data-theme="dark"] .about-fun {
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 24px var(--card-shadow);
+  transition: all 0.4s ease;
 }
 
 .about-intro:hover,
 .about-fun:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px var(--card-shadow);
+  border-color: var(--border-accent);
+  box-shadow: 0 8px 32px var(--card-shadow), 0 0 24px var(--accent-glow);
 }
 
-/* Make About Intro text left-aligned again */
+/* About Intro text left-aligned */
 .about-intro p {
   text-align: left;
   margin: 0;
 }
 
-/* Fun facts list smaller and tight */
+/* Fun facts list */
 .about-fun ul {
   padding-left: 1.5rem;
   margin-top: 1.5rem;
@@ -401,27 +433,25 @@ main p {
 }
 
 .about-fun li::before {
-  content: '•';
-  color: var(--nav-hover);
+  content: '▸';
+  color: var(--accent);
   font-weight: bold;
   position: absolute;
   left: 0;
-  font-size: 1.2em;
-  line-height: 1;
-}
-
-.about-fun li {
-  margin-bottom: 0.5rem;
+  font-size: 1em;
+  line-height: 1.6;
 }
 
 .about-intro p,
 .about-fun ul,
 .about-fun li {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.8;
 }
 
-/* Responsive Adjustments */
+/* ═══════════════════════════════
+   Responsive
+   ═══════════════════════════════ */
 @media (max-width: 768px) {
   main {
     padding: 1rem;
