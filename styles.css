@@ -1,52 +1,41 @@
 /* General CSS for every page */
-/* Page transition overlay - Enhanced for seamless transitions */
-.page-transition {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--bg-color);
-  z-index: 10000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 150ms cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity;
+
+/* === Page Transition System === */
+
+/* Main content ready for hardware-accelerated transitions */
+main {
+  will-change: opacity, transform;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  content: "";
-  display: block;
 }
 
-.page-transition.active {
-  opacity: 0.95;
-  pointer-events: all;
-  transition: opacity 150ms cubic-bezier(0.16, 1, 0.3, 1);
+/* Fade-out: content slides down 15px + fades out (350ms ease-in-out) */
+main.page-exit {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 350ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
 }
 
-/* Smooth transitions for main content */
-main,
-.sidebar,
-.site-footer,
-.nav-container {
-  transition: opacity 120ms ease-out, transform 120ms ease-out;
-  will-change: transform, opacity;
+/* Fade-in starting state: content positioned 20px below, invisible */
+main.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: none;
+}
+
+/* Fade-in active: content slides up to resting position (450ms ease-out) */
+main.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 450ms cubic-bezier(0.0, 0.0, 0.2, 1),
+    transform 450ms cubic-bezier(0.0, 0.0, 0.2, 1);
 }
 
 /* Hide scrollbar during transitions */
 body.transitioning {
   overflow: hidden;
-  height: 100vh;
-  position: relative;
-}
-
-/* Add this new class to fade out content before transition */
-.content-fade-out {
-  opacity: 0;
-  transform: translateY(2px);
-  transition: opacity 80ms ease-out, transform 80ms ease-out;
 }
 
 /* Ensure smooth scrolling */

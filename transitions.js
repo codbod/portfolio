@@ -1,139 +1,108 @@
-// Create transition overlay with optimized performance
-function createTransitionOverlay() {
-  // Check if overlay already exists
-  let overlay = document.querySelector('.page-transition');
-  if (!overlay) {
-    overlay = document.createElement('div');
-    overlay.className = 'page-transition';
-    // Add to body with minimal reflow
-    document.body.insertAdjacentElement('afterbegin', overlay);
-  }
-  return overlay;
-}
+// Page transition system — smooth fade-out/fade-in between navigation links
+// Uses only opacity + translateY for hardware-accelerated, subtle transitions
+(function () {
+  'use strict';
 
-// Handle page transitions with improved performance
-function initPageTransitions() {
-  const transitionOverlay = createTransitionOverlay();
-  let isTransitioning = false;
-  let transitionStartTime = 0;
-  const TRANSITION_DURATION = 150; // ms
-  const MIN_TRANSITION_TIME = 120; // Minimum time to show transition (ms)
+  var isTransitioning = false;
+  var FADE_OUT_DURATION = 350; // ms — matches CSS .page-exit
 
-  // Function to handle navigation with smooth transitions
-  async function handleNavigation(href) {
+  // Animate the current page content out, then navigate
+  function navigateTo(href) {
     if (isTransitioning) return;
-    
-    // Mark transition start time
-    transitionStartTime = performance.now();
     isTransitioning = true;
-    
-    try {
-      // Add transitioning class to body
-      document.documentElement.classList.add('transitioning');
-      
-      // Fade out main content
-      const mainContent = document.querySelector('main');
-      if (mainContent) {
-        mainContent.style.willChange = 'opacity, transform';
-        mainContent.style.opacity = '0';
-        mainContent.style.transform = 'translateY(2px)';
-      }
 
-      // Wait for the fade out to complete
-      await new Promise(resolve => setTimeout(resolve, 80));
-      
-      // Start the overlay transition
-      requestAnimationFrame(() => {
-        transitionOverlay.style.display = 'block';
-        // Force reflow
-        void transitionOverlay.offsetHeight;
-        transitionOverlay.classList.add('active');
-      });
-      
-      // Calculate remaining time for minimum transition
-      const elapsed = performance.now() - transitionStartTime;
-      const remainingTime = Math.max(0, MIN_TRANSITION_TIME - elapsed);
-      
-      // Wait for minimum transition time
-      await new Promise(resolve => setTimeout(resolve, remainingTime));
-      
-      // Navigate to the new page in the next frame
-      requestAnimationFrame(() => {
-        window.location.href = href;
-      });
-      
-    } catch (error) {
-      console.error('Navigation error:', error);
-      // Clean up on error
-      document.documentElement.classList.remove('transitioning');
-      transitionOverlay.classList.remove('active');
-      const mainContent = document.querySelector('main');
-      if (mainContent) {
-        mainContent.style.opacity = '';
-        mainContent.style.transform = '';
-        mainContent.style.willChange = '';
-      }
-      isTransitioning = false;
-    }
-  }
-
-  // Intercept all link clicks with better performance
-  document.addEventListener('click', (e) => {
-    // Find the closest anchor element
-    const link = e.target.closest('a');
-    
-    // Ignore if not a link, or if it's an external link, anchor link, or special link
-    if (!link || 
-        link.hostname !== window.location.hostname || 
-        link.target === '_blank' || 
-        link.getAttribute('download') ||
-        link.href.includes('mailto:') ||
-        link.href.includes('tel:') ||
-        link.href.includes('javascript:') ||
-        link.href === '#' ||
-        link.href.endsWith('#')) {
+    var main = document.querySelector('main');
+    if (!main) {
+      window.location.href = href;
       return;
     }
 
-    // Check if it's a same-page anchor link
-    if (link.hash && link.pathname === window.location.pathname) {
-      return; // Let the browser handle anchor links
-    }
+    // Set flag so intro.js knows the user navigated from another page
+    sessionStorage.setItem('navTransition', 'true');
 
-    // Prevent default navigation
-    e.preventDefault();
-    
-    // Use requestIdleCallback for better performance
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(() => handleNavigation(link.href), { timeout: 100 });
-    } else {
-      // Fallback for browsers that don't support requestIdleCallback
-      requestAnimationFrame(() => handleNavigation(link.href));
-    }
-  }, { passive: true });
+    // Lock scrolling during exit animation
+    document.body.classList.add('transitioning');
 
-  // Handle browser back/forward buttons
-  window.addEventListener('popstate', () => {
-    if (!isTransitioning) {
-      handleNavigation(window.location.href);
-    }
-  });
-}
+    // Trigger fade-out + slide-down
+    main.classList.add('page-exit');
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  // Add 'loaded' class to enable transitions
-  document.body.classList.add('loaded');
-  
-  // Initialize page transitions
-  initPageTransitions();
-});
-
-// Handle page load event
-window.addEventListener('load', () => {
-  // Hide the transition overlay if it's still visible
-  const overlay = document.querySelector('.page-transition');
-  if (overlay) {
-    overlay.classList.remove('active');
+    // After fade-out completes, navigate to the new page
+    setTimeout(function () {
+      window.location.href = href;
+    }, FADE_OUT_DURATION);
   }
-});
+
+  // On page load: animate the main content in
+  function animatePageIn() {
+    // If the intro animation is handling the reveal, skip page-enter
+    if (window.__introActive) return;
+
+    var main = document.querySelector('main');
+    if (!main) return;
+
+    // Start in the hidden enter state
+    main.classList.add('page-enter');
+
+    // Force a reflow so the browser registers the starting position
+    void main.offsetHeight;
+
+    // Trigger the fade-in animation
+    requestAnimationFrame(function () {
+      main.classList.remove('page-enter');
+      main.classList.add('page-enter-active');
+
+      // Clean up classes after animation completes
+      setTimeout(function () {
+        main.classList.remove('page-enter-active');
+        document.body.classList.remove('transitioning');
+        isTransitioning = false;
+      }, 450); // matches CSS .page-enter-active duration
+    });
+  }
+
+  // Intercept navigation link clicks
+  function handleLinkClick(e) {
+    var link = e.target.closest('a');
+
+    // Ignore: not a link, external, new tab, download, mail, tel, hash-only
+    if (!link ||
+      link.hostname !== window.location.hostname ||
+      link.target === '_blank' ||
+      link.getAttribute('download') ||
+      link.href.indexOf('mailto:') !== -1 ||
+      link.href.indexOf('tel:') !== -1 ||
+      link.href.indexOf('javascript:') !== -1 ||
+      link.href === '#' ||
+      link.href.endsWith('#')) {
+      return;
+    }
+
+    // Same-page anchor link — let browser handle it
+    if (link.hash && link.pathname === window.location.pathname) {
+      return;
+    }
+
+    // Same page link — no need to transition
+    var currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    var targetPage = link.pathname.split('/').pop() || 'index.html';
+    if (currentPage === targetPage) {
+      return;
+    }
+
+    e.preventDefault();
+    navigateTo(link.href);
+  }
+
+  // Initialize
+  function init() {
+    document.body.classList.add('loaded');
+    animatePageIn();
+    document.addEventListener('click', handleLinkClick);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

@@ -1,35 +1,38 @@
 // Intro animation — only runs on the homepage (index.html)
-// Only plays once per browser session (skipped when navigating back from other pages)
+// Plays on first visit & refresh. Skipped when navigating back from another page.
 (function () {
   'use strict';
 
   // Only run if the intro overlay exists on this page
-  const overlay = document.getElementById('intro-overlay');
+  var overlay = document.getElementById('intro-overlay');
   if (!overlay) return;
 
-  // Check if the intro has already played this session
-  var introPlayed = sessionStorage.getItem('introPlayed');
+  // Check if the user navigated here from another page on the site
+  // (flag is set by transitions.js when a nav link is clicked)
+  var cameFromNav = sessionStorage.getItem('navTransition');
 
-  if (introPlayed) {
-    // Already played — remove the overlay immediately, show page normally
+  if (cameFromNav) {
+    // User came from another page — skip intro, clear the flag
+    sessionStorage.removeItem('navTransition');
     overlay.remove();
     return;
   }
 
-  // Mark the intro as played for this session
-  sessionStorage.setItem('introPlayed', 'true');
-
-  const headline = document.getElementById('intro-headline');
-  const subtitle = document.getElementById('intro-subtitle');
-  const accentLine = document.getElementById('intro-accent');
-  const homepageContent = document.querySelector('.about-container');
-  const sidebar = document.querySelector('.sidebar');
-  const footer = document.querySelector('.site-footer');
+  // Fresh visit or page refresh — play the intro animation
+  var headline = document.getElementById('intro-headline');
+  var subtitle = document.getElementById('intro-subtitle');
+  var accentLine = document.getElementById('intro-accent');
+  var homepageContent = document.querySelector('.about-container');
+  var sidebar = document.querySelector('.sidebar');
+  var footer = document.querySelector('.site-footer');
 
   // Hide homepage content initially
   if (homepageContent) homepageContent.classList.add('homepage-hidden');
   if (sidebar) sidebar.classList.add('homepage-hidden');
   if (footer) footer.classList.add('homepage-hidden');
+
+  // Mark that intro is active so transitions.js skips its page-enter animation
+  window.__introActive = true;
 
   // Timeline:
   //  0ms        — page loads, dark overlay visible
@@ -58,19 +61,16 @@
 
     // Step 4: dissolve overlay + reveal homepage
     setTimeout(function () {
-      // Fade out the overlay
       overlay.classList.add('intro-dissolve');
 
-      // Reveal homepage content
       if (homepageContent) homepageContent.classList.add('homepage-reveal');
       if (sidebar) sidebar.classList.add('homepage-reveal');
       if (footer) footer.classList.add('homepage-reveal');
     }, 1500);
 
-    // Step 5: clean up after animation is fully done
+    // Step 5: clean up after animation completes
     setTimeout(function () {
       overlay.style.display = 'none';
-      // Remove animation classes so content renders normally
       if (homepageContent) {
         homepageContent.classList.remove('homepage-hidden', 'homepage-reveal');
       }
@@ -80,12 +80,12 @@
       if (footer) {
         footer.classList.remove('homepage-hidden', 'homepage-reveal');
       }
-      // Remove the overlay from the DOM entirely
       overlay.remove();
+      window.__introActive = false;
     }, 2100);
   }
 
-  // Run the intro as soon as the DOM is ready
+  // Run the intro
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', runIntro);
   } else {
