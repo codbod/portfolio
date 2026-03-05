@@ -166,7 +166,11 @@ body::before {
 }
 
 /* Content stacking above background */
-nav, main, aside, footer, .sidebar-toggle {
+nav,
+main,
+aside,
+footer,
+.sidebar-toggle {
   position: relative;
   z-index: 2;
 }
@@ -427,32 +431,54 @@ main {
 /* ═══════════════════════════════
    Text Colors
    ═══════════════════════════════ */
-p, h1, h2, h3, h4, h5, h6,
-li, td, th, label, input, textarea, select,
-.about-content, .experience-preview, .experience-full {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+td,
+th,
+label,
+input,
+textarea,
+select,
+.about-content,
+.experience-preview,
+.experience-full {
   color: var(--text-color);
   transition: color 0.3s ease;
 }
 
-.about-container, .about-top,
-.about-intro, .about-fun,
-.about-education, .about-skills,
+.about-container,
+.about-top,
+.about-intro,
+.about-fun,
+.about-education,
+.about-skills,
 .about-experience {
   color: var(--text-color);
 }
 
-.about-intro p, .about-fun ul,
-.about-education p, .about-skills ul,
+.about-intro p,
+.about-fun ul,
+.about-education p,
+.about-skills ul,
 .experience-item {
   color: var(--text-color);
 }
 
-.experience-item h3, .experience-item p,
-.experience-preview, .experience-full {
+.experience-item h3,
+.experience-item p,
+.experience-preview,
+.experience-full {
   color: var(--text-color);
 }
 
-.about-fun ul li, .about-skills ul li {
+.about-fun ul li,
+.about-skills ul li {
   color: var(--text-color);
   list-style-position: inside;
 }
@@ -500,13 +526,15 @@ li, td, th, label, input, textarea, select,
 }
 
 /* Links in content */
-.about-content a, .experience-full a {
+.about-content a,
+.experience-full a {
   color: var(--accent);
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
-.about-content a:hover, .experience-full a:hover {
+.about-content a:hover,
+.experience-full a:hover {
   color: var(--nav-hover);
   text-shadow: 0 0 8px var(--accent-glow);
   text-decoration: underline;
@@ -584,41 +612,9 @@ body.with-sidebar.sidebar-visible .sidebar {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow);
 }
 
-/* Sidebar content */
-.sidebar .profile-pic {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 1.5rem;
-  border: 2px solid var(--border-accent);
-  box-shadow: 0 0 20px var(--accent-glow);
-}
-
-.sidebar h3 {
-  font-size: 1.4rem;
-  margin-bottom: 0.25rem;
-  color: var(--accent);
-}
-
-.sidebar p {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-bottom: 1.5rem;
-}
-
-.sidebar .contact-info a {
-  display: block;
-  margin: 0.4rem 0;
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--nav-text);
-  transition: all 0.3s ease;
-}
-
-.sidebar .contact-info a:hover {
-  color: var(--accent);
-  text-shadow: 0 0 10px var(--accent-glow);
+/* Move toggle button with the sidebar */
+body.with-sidebar.sidebar-visible .sidebar-toggle {
+  left: 310px;
 }
 
 /* Mobile sidebar */
@@ -631,7 +627,9 @@ body.with-sidebar.sidebar-visible .sidebar {
     transform: translateX(0);
   }
 
-  main, nav, .site-footer {
+  main,
+  nav,
+  .site-footer {
     width: 100%;
     max-width: 100%;
   }
@@ -703,7 +701,8 @@ body.with-sidebar.sidebar-visible .sidebar {
 /* ═══════════════════════════════
    Headers & Section Titles
    ═══════════════════════════════ */
-h1, h2 {
+h1,
+h2 {
   color: var(--text-color);
   background: transparent;
   margin-bottom: 15px;
@@ -739,7 +738,9 @@ header h2 {
 /* ═══════════════════════════════
    Footer — Glass Panel
    ═══════════════════════════════ */
-nav, main, footer {
+nav,
+main,
+footer {
   grid-column: 2;
 }
 

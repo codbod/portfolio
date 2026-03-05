@@ -1,0 +1,450 @@
+/* ═══════════════════════════════════════════════════════════
+   System Identity Sidebar — Network Node Panel
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Base sidebar overrides ── */
+.sidebar {
+    background: rgba(8, 12, 21, 0.92);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-right: 1px solid rgba(62, 207, 255, 0.08);
+    width: 300px;
+    padding: 0;
+    text-align: left;
+    box-shadow: 2px 0 32px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Dot-grid background */
+.sidebar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(62, 207, 255, 0.04) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.sidebar>* {
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Scan-on-load reveal ── */
+.sidebar.sidebar-loaded .sys-module {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.sys-module {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.sys-module:nth-child(1) {
+    transition-delay: 0.05s;
+}
+
+.sys-module:nth-child(2) {
+    transition-delay: 0.12s;
+}
+
+.sys-module:nth-child(3) {
+    transition-delay: 0.19s;
+}
+
+.sys-module:nth-child(4) {
+    transition-delay: 0.26s;
+}
+
+.sys-module:nth-child(5) {
+    transition-delay: 0.33s;
+}
+
+.sys-module:nth-child(6) {
+    transition-delay: 0.40s;
+}
+
+/* ── Thin Dividers ── */
+.sys-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(62, 207, 255, 0.15), transparent);
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* ═══════════════════════════════
+   Module 1: System Header
+   ═══════════════════════════════ */
+.sys-header {
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.sys-led {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00e676;
+    box-shadow: 0 0 6px #00e676, 0 0 14px rgba(0, 230, 118, 0.3);
+    flex-shrink: 0;
+    margin-top: 4px;
+    animation: led-pulse 2s ease-in-out infinite;
+}
+
+@keyframes led-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 6px #00e676, 0 0 14px rgba(0, 230, 118, 0.3);
+    }
+
+    50% {
+        opacity: 0.6;
+        box-shadow: 0 0 3px #00e676, 0 0 8px rgba(0, 230, 118, 0.15);
+    }
+}
+
+.sys-header-text {
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.7rem;
+    line-height: 1.6;
+    color: rgba(62, 207, 255, 0.7);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.sys-header-text strong {
+    color: #3ecfff;
+    font-weight: 600;
+}
+
+.sys-status {
+    color: #00e676;
+    font-weight: 600;
+}
+
+/* ═══════════════════════════════
+   Module 2: Identity Core
+   ═══════════════════════════════ */
+.sys-identity {
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Photo container with glow ring */
+.sys-photo-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.sys-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid rgba(62, 207, 255, 0.4);
+    box-shadow: 0 0 20px rgba(62, 207, 255, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+/* Inner glow ring */
+.sys-ring-inner {
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    border: 1px solid rgba(62, 207, 255, 0.25);
+    box-shadow: 0 0 12px rgba(62, 207, 255, 0.15);
+    z-index: 1;
+}
+
+/* Outer rotating dashed ring */
+.sys-ring-outer {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(62, 207, 255, 0.2);
+    animation: ring-rotate 30s linear infinite;
+    z-index: 0;
+}
+
+@keyframes ring-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Name */
+.sys-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #e6edf3;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.sys-role {
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.72rem;
+    color: rgba(62, 207, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* ═══════════════════════════════
+   Module 3: System Metadata
+   ═══════════════════════════════ */
+.sys-metadata {
+    padding: 14px 20px;
+}
+
+.sys-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 4px 0;
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.72rem;
+    line-height: 1.7;
+}
+
+.sys-meta-key {
+    color: rgba(62, 207, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+.sys-meta-val {
+    color: #c9d1d9;
+    text-align: right;
+}
+
+/* ═══════════════════════════════
+   Module 4: Network Status
+   ═══════════════════════════════ */
+.sys-network {
+    padding: 14px 20px;
+}
+
+.sys-net-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    position: relative;
+}
+
+.sys-net-item:hover {
+    background: rgba(62, 207, 255, 0.06);
+}
+
+/* Status LEDs */
+.sys-net-led {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: net-led-pulse 2.5s ease-in-out infinite;
+}
+
+.sys-net-led.green {
+    background: #00e676;
+    box-shadow: 0 0 4px #00e676;
+}
+
+.sys-net-led.cyan {
+    background: #3ecfff;
+    box-shadow: 0 0 4px #3ecfff;
+}
+
+@keyframes net-led-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.sys-net-label {
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.75rem;
+    color: #c9d1d9;
+    flex-grow: 1;
+    transition: color 0.25s ease;
+}
+
+.sys-net-item:hover .sys-net-label {
+    color: #3ecfff;
+}
+
+.sys-net-status {
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.65rem;
+    color: rgba(0, 230, 118, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Tooltip */
+.sys-net-item[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(8, 12, 21, 0.95);
+    border: 1px solid rgba(62, 207, 255, 0.2);
+    color: #3ecfff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.65rem;
+    white-space: nowrap;
+    z-index: 100;
+    pointer-events: none;
+    box-shadow: 0 0 12px rgba(62, 207, 255, 0.1);
+}
+
+/* ═══════════════════════════════
+   Module 5: External Ports
+   ═══════════════════════════════ */
+.sys-ports {
+    padding: 14px 20px;
+}
+
+.sys-ports-label {
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.65rem;
+    color: rgba(62, 207, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.sys-ports-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.sys-port {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 10px;
+    background: rgba(17, 24, 39, 0.6);
+    border: 1px solid rgba(62, 207, 255, 0.08);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.sys-port:hover {
+    border-color: rgba(62, 207, 255, 0.35);
+    background: rgba(62, 207, 255, 0.06);
+    box-shadow: 0 0 16px rgba(62, 207, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.sys-port-num {
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.7rem;
+    color: #c9d1d9;
+    transition: color 0.25s ease;
+}
+
+.sys-port:hover .sys-port-num {
+    color: #3ecfff;
+}
+
+.sys-port-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(62, 207, 255, 0.3);
+    transition: all 0.25s ease;
+}
+
+.sys-port:hover .sys-port-dot {
+    background: #3ecfff;
+    box-shadow: 0 0 6px #3ecfff;
+}
+
+/* ═══════════════════════════════
+   Module 6: Footer / Firmware
+   ═══════════════════════════════ */
+.sys-footer {
+    padding: 14px 20px;
+    margin-top: auto;
+}
+
+.sys-footer-text {
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.62rem;
+    color: rgba(139, 148, 158, 0.5);
+    line-height: 1.8;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* ═══════════════════════════════
+   Reduced Motion
+   ═══════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+
+    .sys-led,
+    .sys-net-led {
+        animation: none;
+    }
+
+    .sys-ring-outer {
+        animation: none;
+    }
+
+    .sys-module {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* ═══════════════════════════════
+   Mobile (slide-out drawer)
+   ═══════════════════════════════ */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 280px;
+    }
+}

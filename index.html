@@ -34,6 +34,7 @@
   </script>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="sidebar.css">
   <script src="nav.js" defer></script>
   <script src="about.js" defer></script>
   <script src="sidebar.js" defer></script>
@@ -200,14 +201,104 @@
   </div>
 
   <aside class="sidebar">
-    <img src="headshot.webp" alt="Cody Yeung" class="profile-pic">
-    <h3>Cody Yeung</h3>
-    <p>Aspiring Networking Specialist</p>
-    <div class="contact-info">
-      <a href="https://www.linkedin.com/in/codyyeung04/" target="_blank">LinkedIn</a>
-      <a href="mailto:cody.g.yeung@gmail.com">Email</a>
-      <a href="https://www.instagram.com/c0dc0d/" target="_blank">Instagram</a>
+
+    <!-- Module 1: System Header -->
+    <div class="sys-module sys-header">
+      <span class="sys-led"></span>
+      <div class="sys-header-text">
+        SYSTEM NODE: <strong>CODY-CORE</strong><br>
+        STATUS: <span class="sys-status">ONLINE</span>
+      </div>
     </div>
+    <div class="sys-divider"></div>
+
+    <!-- Module 2: Identity Core -->
+    <div class="sys-module sys-identity">
+      <div class="sys-photo-container">
+        <div class="sys-ring-outer"></div>
+        <div class="sys-ring-inner"></div>
+        <img src="headshot.webp" alt="Cody Yeung" class="sys-photo">
+      </div>
+      <div class="sys-name">Cody Yeung</div>
+      <div class="sys-role">Network Engineer</div>
+    </div>
+    <div class="sys-divider"></div>
+
+    <!-- Module 3: System Metadata -->
+    <div class="sys-module sys-metadata">
+      <div class="sys-meta-row">
+        <span class="sys-meta-key">IP</span>
+        <span class="sys-meta-val">10.0.0.1</span>
+      </div>
+      <div class="sys-meta-row">
+        <span class="sys-meta-key">Role</span>
+        <span class="sys-meta-val">Net Engineer</span>
+      </div>
+      <div class="sys-meta-row">
+        <span class="sys-meta-key">Uptime</span>
+        <span class="sys-meta-val" id="sys-uptime">21y 0d 0h</span>
+      </div>
+      <div class="sys-meta-row">
+        <span class="sys-meta-key">Location</span>
+        <span class="sys-meta-val">Tempe, AZ</span>
+      </div>
+    </div>
+    <div class="sys-divider"></div>
+
+    <!-- Module 4: Network Status -->
+    <div class="sys-module sys-network">
+      <a href="https://github.com/codbod" target="_blank" class="sys-net-item" data-tooltip="github.com/codbod">
+        <span class="sys-net-led green"></span>
+        <span class="sys-net-label">GitHub</span>
+        <span class="sys-net-status">Active</span>
+      </a>
+      <a href="https://www.linkedin.com/in/codyyeung04/" target="_blank" class="sys-net-item"
+        data-tooltip="linkedin.com/in/codyyeung04">
+        <span class="sys-net-led cyan"></span>
+        <span class="sys-net-label">LinkedIn</span>
+        <span class="sys-net-status">Active</span>
+      </a>
+      <a href="mailto:cody.g.yeung@gmail.com" class="sys-net-item" data-tooltip="cody.g.yeung@gmail.com">
+        <span class="sys-net-led green"></span>
+        <span class="sys-net-label">Email</span>
+        <span class="sys-net-status">Active</span>
+      </a>
+    </div>
+    <div class="sys-divider"></div>
+
+    <!-- Module 5: External Ports -->
+    <div class="sys-module sys-ports">
+      <div class="sys-ports-label">External Ports</div>
+      <div class="sys-ports-grid">
+        <a href="resume.html" class="sys-port">
+          <span class="sys-port-dot"></span>
+          <span class="sys-port-num">PORT 443</span>
+        </a>
+        <a href="contact.html" class="sys-port">
+          <span class="sys-port-dot"></span>
+          <span class="sys-port-num">PORT 22</span>
+        </a>
+        <a href="mailto:cody.g.yeung@gmail.com" class="sys-port">
+          <span class="sys-port-dot"></span>
+          <span class="sys-port-num">PORT 25</span>
+        </a>
+        <a href="index.html" class="sys-port">
+          <span class="sys-port-dot"></span>
+          <span class="sys-port-num">PORT 80</span>
+        </a>
+      </div>
+    </div>
+    <div class="sys-divider"></div>
+
+    <!-- Module 6: Firmware Footer -->
+    <div class="sys-module sys-footer">
+      <div class="sys-footer-text">
+        FW v2.4.1 // 2026.03.04<br>
+        KERNEL: PORTFOLIO-SYS<br>
+        BUILD: STABLE
+      </div>
+    </div>
+
   </aside>
 
   <!-- Toggle Button -->
