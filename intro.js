@@ -22,6 +22,9 @@
   var headline = document.getElementById('intro-headline');
   var subtitle = document.getElementById('intro-subtitle');
   var accentLine = document.getElementById('intro-accent');
+  var welcomeText = document.getElementById('intro-welcome');
+  var cyTrace = document.getElementById('cy-trace');
+  var cyMonogram = document.getElementById('cy-monogram');
   var packetDot = document.getElementById('packet-dot');
   var tooltip = document.getElementById('hop-tooltip');
   var svgEl = document.getElementById('network-svg');
@@ -56,7 +59,7 @@
   var SEGMENT_DURATION = 500;   // dot travel per segment
   var HOP_PAUSE = 200;   // pause at each hop
   var PHASE2_DELAY = 400;   // gap between phases
-  var PHASE2_HOLD = 1200;  // how long greeting shows
+  var PHASE2_HOLD = 2700;  // how long greeting shows (extended for welcome text)
 
   // ── Fast-forward state ──
   var fastMode = false;          // when true, animation runs at high speed
@@ -116,6 +119,30 @@
       return -1;
     }
     return setTimeout(fn, delay);
+  }
+
+  // ── Utility: Animate stroke-dashoffset for "drawing" effect ──
+  function animateStroke(pathEl, duration, onComplete) {
+    var totalLen = pathEl.getTotalLength();
+    pathEl.style.strokeDasharray = totalLen;
+    pathEl.style.strokeDashoffset = totalLen;
+    var startTime = null;
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      var progress = Math.min((timestamp - startTime) / duration, 1);
+      // Ease-in-out quad
+      var eased = progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+      pathEl.style.strokeDashoffset = totalLen * (1 - eased);
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        if (onComplete) onComplete();
+      }
+    }
+    requestAnimationFrame(step);
   }
 
   // ── Click/key handler: activate fast-forward ──
@@ -290,10 +317,33 @@
         accentLine.classList.add('intro-visible');
       }, 500);
 
-      // Hold, then complete
+      // Welcome text fades in after the accent line
       setTimeout(function () {
-        if (onComplete) onComplete();
-      }, PHASE2_HOLD);
+        if (welcomeText) welcomeText.classList.add('intro-visible');
+      }, 1000);
+
+      // CY monogram trace drives the transition — single brush stroke
+      if (cyTrace && cyMonogram) {
+        // Pre-hide the stroke before making SVG visible
+        var totalLen = cyMonogram.getTotalLength();
+        cyMonogram.style.strokeDasharray = totalLen;
+        cyMonogram.style.strokeDashoffset = totalLen;
+
+        cyTrace.classList.add('trace-active');
+
+        // One continuous stroke: C flows into Y (2500ms total)
+        animateStroke(cyMonogram, 2500, function () {
+          // Brush stroke complete — brief pause, then reveal
+          setTimeout(function () {
+            if (onComplete) onComplete();
+          }, 200);
+        });
+      } else {
+        // Fallback if SVG not found
+        setTimeout(function () {
+          if (onComplete) onComplete();
+        }, PHASE2_HOLD);
+      }
 
     }, PHASE2_DELAY);
   }
