@@ -55,12 +55,22 @@ document.addEventListener('DOMContentLoaded', function () {
     updateSidebarState(isSidebarVisible);
 
     if (toggleButton) {
-        toggleButton.style.display = window.innerWidth > 1024 ? 'flex' : 'none';
+        toggleButton.style.display = 'flex';
         toggleButton.addEventListener('click', function (e) {
             e.stopPropagation();
             toggleSidebar();
         });
     }
+
+    // ── Close sidebar when clicking outside on mobile ──
+    document.addEventListener('click', function (e) {
+        if (window.innerWidth <= 1024 &&
+            body.classList.contains('sidebar-visible') &&
+            !sidebar.contains(e.target) &&
+            (!toggleButton || !toggleButton.contains(e.target))) {
+            updateSidebarState(false);
+        }
+    });
 
     // ── Scan-on-load reveal animation ──
     // Trigger staggered module reveal after sidebar becomes visible
@@ -106,12 +116,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // ── Handle window resize ──
     function handleResize() {
         var isNowMobile = window.innerWidth <= 1024;
-        if (toggleButton) {
-            toggleButton.style.display = isNowMobile ? 'none' : 'flex';
-        }
 
         if (isNowMobile) {
-            updateSidebarState(true);
+            // On mobile, sidebar starts hidden — only opens on button click
+            if (body.classList.contains('sidebar-visible')) {
+                updateSidebarState(false);
+            }
         } else {
             var savedState = localStorage.getItem('sidebarState');
             updateSidebarState(savedState ? JSON.parse(savedState) : false);
