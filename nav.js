@@ -2,7 +2,7 @@
 // Function to get the navigation HTML with conditional download button
 function getNavbarHTML() {
   const isResumePage = window.location.pathname.includes('resume.html');
-  
+
   return `
   <nav>
     <div class="nav-container">
@@ -21,12 +21,12 @@ function getNavbarHTML() {
       </div>
       ${isResumePage ? `
       <div class="download-resume-btn">
-        <a href="Resume.pdf" download class="download-nav-btn" title="Download Resume">
+        <button onclick="downloadResume();" class="download-nav-btn" title="Download Resume" type="button">
           <span>Download</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 15L12 3M12 15L8 11M12 15L16 11M3 17V18C3 19.1046 3.89543 20 5 20H19C20.1046 20 21 19.1046 21 18V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </a>
+        </button>
       </div>` : ''}
     </div>
   </nav>`;
@@ -38,15 +38,15 @@ const NAVBAR_HTML = getNavbarHTML();
 function toggleMobileMenu() {
   const navLinks = document.querySelector('.nav-links');
   const menuToggle = document.querySelector('.menu-toggle');
-  
+
   if (navLinks && menuToggle) {
     // Toggle the active class on the nav links
     navLinks.classList.toggle('active');
-    
+
     // Toggle aria-expanded for accessibility
     const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
     menuToggle.setAttribute('aria-expanded', !isExpanded);
-    
+
     // Toggle body class to prevent scrolling when menu is open
     document.body.style.overflow = !isExpanded ? 'hidden' : '';
   }
@@ -56,11 +56,11 @@ function toggleMobileMenu() {
 function handleClickOutside(event) {
   const navLinks = document.querySelector('.nav-links');
   const menuToggle = document.querySelector('.menu-toggle');
-  
-  if (navLinks && menuToggle && 
-      !navLinks.contains(event.target) && 
-      !menuToggle.contains(event.target) &&
-      navLinks.classList.contains('active')) {
+
+  if (navLinks && menuToggle &&
+    !navLinks.contains(event.target) &&
+    !menuToggle.contains(event.target) &&
+    navLinks.classList.contains('active')) {
     navLinks.classList.remove('active');
     menuToggle.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = ''; // Re-enable scrolling
@@ -73,13 +73,13 @@ function loadNavbar() {
     // Create a temporary container
     const temp = document.createElement('div');
     temp.innerHTML = NAVBAR_HTML.trim();
-    
+
     // Get the nav element
     const navElement = temp.querySelector('nav');
     if (!navElement) {
       throw new Error('Failed to create navigation element');
     }
-    
+
     // Insert the navbar before the main content
     const main = document.querySelector('main');
     if (main) {
@@ -88,33 +88,33 @@ function loadNavbar() {
       // If no main element, just append to body
       document.body.insertBefore(navElement, document.body.firstChild);
     }
-    
+
     // After navbar is loaded, set the active link
     setActiveLink();
-    
+
     // Initialize theme after navbar is loaded
     if (window.ThemeManager) {
       window.ThemeManager.initialize();
     }
-    
+
     // Add event listener for mobile menu toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     const navContainer = document.querySelector('.nav-container');
     const themeToggle = document.querySelector('.theme-switch-container');
-    
+
     // Toggle mobile menu
     if (menuToggle) {
-      menuToggle.addEventListener('click', function() {
+      menuToggle.addEventListener('click', function () {
         navLinks.classList.toggle('active');
-        this.setAttribute('aria-expanded', 
+        this.setAttribute('aria-expanded',
           this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
         );
       });
     }
 
     // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       if (!navContainer.contains(e.target) && navLinks.classList.contains('active')) {
         navLinks.classList.remove('active');
         menuToggle.setAttribute('aria-expanded', 'false');
@@ -124,18 +124,18 @@ function loadNavbar() {
     // Update active nav link
     const currentLocation = window.location.href;
     const navLinksList = document.querySelectorAll('.nav-links a');
-    
+
     navLinksList.forEach(link => {
       if (link.href === currentLocation) {
         link.classList.add('active');
       }
 
-      link.addEventListener('click', function(e) {
+      link.addEventListener('click', function (e) {
         // Remove active class from all links
         navLinksList.forEach(l => l.classList.remove('active'));
         // Add active class to clicked link
         this.classList.add('active');
-        
+
         // Close mobile menu if open
         if (window.innerWidth <= 768) {
           navLinks.classList.remove('active');
@@ -155,10 +155,10 @@ function loadNavbar() {
     }
 
     window.addEventListener('resize', handleResize);
-    
+
     // Initialize
     handleResize();
-    
+
     return navElement;
   } catch (error) {
     console.error('Error creating navbar:', error);
@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
   loadNavbar().catch(error => {
     console.error('Failed to load navbar:', error);
   });
-  
+
   // Listen for navigation changes (in case of SPA-like behavior)
   window.addEventListener('popstate', setActiveLink);
 });

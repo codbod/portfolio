@@ -167,11 +167,28 @@
     </div>
     <script>
       function downloadResume() {
+        // Try fetch → blob first (works on HTTPS / GitHub Pages)
+        // Falls back to <a download> click (works on file:// protocol)
+        function fallbackDownload() {
+          var a = document.createElement('a');
+          a.href = 'Resume.pdf';
+          a.download = 'Cody_Yeung_Resume.pdf';
+          a.style.display = 'none';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }
+
+        if (window.location.protocol === 'file:') {
+          fallbackDownload();
+          return;
+        }
+
         fetch('Resume.pdf')
-          .then(response => response.blob())
-          .then(blob => {
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
+          .then(function (response) { return response.blob(); })
+          .then(function (blob) {
+            var url = window.URL.createObjectURL(blob);
+            var a = document.createElement('a');
             a.style.display = 'none';
             a.href = url;
             a.download = 'Cody_Yeung_Resume.pdf';
@@ -180,7 +197,9 @@
             window.URL.revokeObjectURL(url);
             document.body.removeChild(a);
           })
-          .catch(error => console.error('Download failed:', error));
+          .catch(function () {
+            fallbackDownload();
+          });
       }
     </script>
     <style>

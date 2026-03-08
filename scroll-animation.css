@@ -85,10 +85,23 @@
 
 /* ── Responsive ── */
 
+/* When track is visible, reserve space so content doesn't sit under it */
+@media (min-width: 1101px) {
+    .about-container {
+        padding-right: 120px;
+        /* 100px track + 20px buffer */
+    }
+}
+
 /* Hide on small screens / when sidebar could overlap */
 @media (max-width: 1100px) {
     .scroll-track {
         display: none;
+    }
+
+    .about-container {
+        padding-right: 2rem;
+        /* revert to default */
     }
 }
 
@@ -96,6 +109,11 @@
 @media (min-width: 1800px) {
     .scroll-track {
         width: 120px;
+    }
+
+    .about-container {
+        padding-right: 140px;
+        /* 120px track + 20px buffer */
     }
 }
 
