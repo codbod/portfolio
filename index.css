@@ -615,13 +615,178 @@ main p {
    Responsive
    ═══════════════════════════════ */
 @media (max-width: 768px) {
+
+  /* ── Base layout ── */
   main {
-    padding: 1rem;
+    padding: 0.75rem;
+  }
+
+  /* ── Section titles — compact ── */
+  main h1 {
+    font-size: 1.5rem;
+    margin: 1rem 0 0.5rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  main h2 {
+    font-size: 1.2rem;
+    margin: 0.8rem 0 0.5rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  main h2::after {
+    width: 40px;
+    bottom: -5px;
+  }
+
+  /* ── Paragraphs ── */
+  main p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.6rem;
+  }
+
+  /* ── About Me intro panel ── */
+  .about-intro {
+    padding: 1.25rem;
+    margin-bottom: 0.75rem;
+    border-radius: 10px;
+  }
+
+  .about-intro:hover {
+    transform: none;
+    /* disable hover lift on touch */
+  }
+
+  .about-intro p {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin: 0 0 0.6rem 0;
+  }
+
+  /* ── Education panel ── */
+  .education-section {
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    min-height: auto;
+    border-radius: 10px;
+  }
+
+  .education-section p {
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .education-section:hover {
+    transform: none;
+  }
+
+  /* ── Skills tags ── */
+  .about-skills {
+    margin: 1.5rem 0;
+    padding: 1.25rem 1rem;
+    border-radius: 10px;
+  }
+
+  .about-skills:hover {
+    box-shadow: 0 4px 24px var(--card-shadow);
   }
 
   .about-skills ul {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .about-skills li {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    border-radius: 6px;
+  }
+
+  .about-skills li:hover {
+    transform: none;
+  }
+
+  /* ── Experience section ── */
+  .about-experience {
+    margin: 1.5rem 0;
+    padding: 0.5rem 0;
+  }
+
+  .experience-item {
+    padding: 1rem 1.1rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    text-align: left;
+  }
+
+  .experience-item:hover {
+    transform: none;
+  }
+
+  .experience-item h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .experience-item p {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin: 0.4rem 0;
+  }
+
+  .show-more-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.82rem;
+    margin-top: 0.8rem;
+  }
+
+  .show-more-btn:hover {
+    transform: none;
+  }
+
+  /* ── Fun Facts panel ── */
+  .about-fun {
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    border-radius: 10px;
+  }
+
+  .about-fun:hover {
+    transform: none;
+  }
+
+  .about-fun ul {
+    padding-left: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  .about-fun li {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin-bottom: 0.5rem;
+    padding-left: 1.2rem;
+  }
+
+  .about-fun li::before {
+    font-size: 0.85em;
+  }
+
+  /* Override the desktop font-size rule for mobile */
+  .about-intro p,
+  .about-fun ul,
+  .about-fun li {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  /* ── Footer compact ── */
+  .site-footer {
+    padding: 20px 15px;
+    font-size: 0.85rem;
+    margin-top: 2rem;
   }
 
   .about-education,
