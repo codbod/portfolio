@@ -1,0 +1,107 @@
+/* ═══════════════════════════════════════════════════════════
+   Scroll-Linked Packet Animation — Right-Side Track
+   Matches Phase-1 network packet trace visual style
+   ═══════════════════════════════════════════════════════════ */
+
+/* Container — fixed right rail */
+.scroll-track {
+    position: fixed;
+    right: 0;
+    top: 60px;
+    /* below nav */
+    width: 100px;
+    height: calc(100vh - 60px);
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.scroll-track.visible {
+    opacity: 1;
+}
+
+/* The SVG fills the rail */
+.scroll-track svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* ── Device Nodes ── */
+.scroll-device {
+    transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+/* Inactive state */
+.scroll-device text {
+    fill: rgba(0, 212, 255, 0.35);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-size: 7px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.scroll-device [stroke] {
+    transition: stroke 0.4s ease;
+}
+
+.scroll-device [fill] {
+    transition: fill 0.4s ease;
+}
+
+/* Active / glowing state */
+.scroll-device.active {
+    filter: url(#scroll-hop-glow);
+}
+
+.scroll-device.active text {
+    fill: rgba(0, 212, 255, 1);
+}
+
+/* ── Path segments ── */
+.scroll-path-bg {
+    stroke: rgba(0, 212, 255, 0.06);
+    fill: none;
+    stroke-width: 1;
+}
+
+.scroll-path-trail {
+    fill: none;
+    stroke: rgba(0, 212, 255, 0.5);
+    stroke-width: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-path-trail.lit {
+    opacity: 1;
+}
+
+/* ── Packet Dot ── */
+#scroll-packet {
+    transition: opacity 0.3s ease;
+}
+
+/* ── Responsive ── */
+
+/* Hide on small screens / when sidebar could overlap */
+@media (max-width: 1100px) {
+    .scroll-track {
+        display: none;
+    }
+}
+
+/* Slightly wider track on very large screens */
+@media (min-width: 1800px) {
+    .scroll-track {
+        width: 120px;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .scroll-track {
+        display: none;
+    }
+}
