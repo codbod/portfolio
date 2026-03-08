@@ -275,25 +275,33 @@
     </div>
     <div class="sys-divider"></div>
 
-    <!-- Module 5: External Ports -->
+    <!-- Module 5: Quick Nav -->
     <div class="sys-module sys-ports">
       <div class="sys-ports-label">External Ports</div>
       <div class="sys-ports-grid">
+        <a href="#about" class="sys-port">
+          <span class="sys-port-dot"></span>
+          <span class="sys-port-num">About Me</span>
+        </a>
+        <a href="#education" class="sys-port">
+          <span class="sys-port-dot"></span>
+          <span class="sys-port-num">Education</span>
+        </a>
+        <a href="#skills" class="sys-port">
+          <span class="sys-port-dot"></span>
+          <span class="sys-port-num">Skills</span>
+        </a>
+        <a href="#experience" class="sys-port">
+          <span class="sys-port-dot"></span>
+          <span class="sys-port-num">Experience</span>
+        </a>
+        <a href="#fun-facts" class="sys-port">
+          <span class="sys-port-dot"></span>
+          <span class="sys-port-num">Fun Facts</span>
+        </a>
         <a href="resume.html" class="sys-port">
           <span class="sys-port-dot"></span>
-          <span class="sys-port-num">PORT 443</span>
-        </a>
-        <a href="contact.html" class="sys-port">
-          <span class="sys-port-dot"></span>
-          <span class="sys-port-num">PORT 22</span>
-        </a>
-        <a href="mailto:cody.g.yeung@gmail.com" class="sys-port">
-          <span class="sys-port-dot"></span>
-          <span class="sys-port-num">PORT 25</span>
-        </a>
-        <a href="index.html" class="sys-port">
-          <span class="sys-port-dot"></span>
-          <span class="sys-port-num">PORT 80</span>
+          <span class="sys-port-num">Resume</span>
         </a>
       </div>
     </div>
@@ -316,41 +324,27 @@
   <!-- Navigation will be loaded here by nav.js -->
 
   <main class="about-container">
-    <div class="about-top">
-      <section class="about-intro">
-        <h1>About Me</h1>
-        <div class="about-content">
-          <p> I’m Cody Yeung, a CCNA-certified, infrastructure-focused IT professional with hands-on experience
-            supporting enterprise environments across networking, systems administration, and cloud platforms. I am
-            actively pursuing a career as a network engineer, with a strong interest in designing, supporting, and
-            optimizing reliable, scalable network infrastructure.</p>
+    <section class="about-intro" id="about">
+      <h1>About Me</h1>
+      <div class="about-content">
+        <p> I'm Cody Yeung, a CCNA-certified, infrastructure-focused IT professional with hands-on experience
+          supporting enterprise environments across networking, systems administration, and cloud platforms. I am
+          actively pursuing a career as a network engineer, with a strong interest in designing, supporting, and
+          optimizing reliable, scalable network infrastructure.</p>
 
-          <p> My experience includes configuring and troubleshooting Cisco-based networks, diagnosing Layer 2 and Layer
-            3 issues, and supporting core network services such as routing, switching, and segmentation. I also bring a
-            solid systems background, with experience in Active Directory, Microsoft 365, and Azure, which allows me to
-            understand how applications and services interact with the network.</p>
+        <p> My experience includes configuring and troubleshooting Cisco-based networks, diagnosing Layer 2 and Layer
+          3 issues, and supporting core network services such as routing, switching, and segmentation. I also bring a
+          solid systems background, with experience in Active Directory, Microsoft 365, and Azure, which allows me to
+          understand how applications and services interact with the network.</p>
 
-          <p> I thrive in fast-paced environments where availability, performance, and security matter. I value clear
-            documentation, collaboration, and operational discipline, and I am continuously building my skills to grow
-            into a well-rounded network engineer who can operate effectively across enterprise and hybrid environments.
-          </p>
-        </div>
-      </section>
+        <p> I thrive in fast-paced environments where availability, performance, and security matter. I value clear
+          documentation, collaboration, and operational discipline, and I am continuously building my skills to grow
+          into a well-rounded network engineer who can operate effectively across enterprise and hybrid environments.
+        </p>
+      </div>
+    </section>
 
-      <section class="about-fun">
-        <h2>Fun Facts</h2>
-        <ul>
-          <li>I build custom mechanical keyboards</li>
-          <li>I enjoy troubleshooting and optimizing systems</li>
-          <li>I enjoy racket sports like tennis, ping pong, and pickleball</li>
-          <li>I love being outside and enjoying nature</li>
-          <li>QWER is my favorite band</li>
-          <li>I enjoy learning about the new technologies</li>
-        </ul>
-      </section>
-    </div>
-
-    <section class="about-education education-section">
+    <section class="about-education education-section" id="education">
       <h2>Education</h2>
       <p><strong>Arizona State University</strong><br>
         B.S. in Information Technology<br>
@@ -358,7 +352,7 @@
         Expected Graduation: 2026</p>
     </section>
 
-    <section class="about-skills">
+    <section class="about-skills" id="skills">
       <h2>Skills Snapshot</h2>
       <ul>
         <li>Microsoft Azure and AWS</li>
@@ -378,7 +372,7 @@
       </ul>
     </section>
 
-    <section class="about-experience">
+    <section class="about-experience" id="experience">
       <h2>Experience</h2>
 
       <!-- SCAI IT Support -->
@@ -532,6 +526,19 @@
       </div>
 
     </section>
+
+    <section class="about-fun" id="fun-facts">
+      <h2>Fun Facts</h2>
+      <ul>
+        <li>I build custom mechanical keyboards</li>
+        <li>I enjoy troubleshooting and optimizing systems</li>
+        <li>I enjoy racket sports like tennis, ping pong, and pickleball</li>
+        <li>I love being outside and enjoying nature</li>
+        <li>QWER is my favorite band</li>
+        <li>I enjoy learning about the new technologies</li>
+      </ul>
+    </section>
+
   </main>
 
   <footer class="site-footer">

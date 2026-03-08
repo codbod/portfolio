@@ -323,7 +323,6 @@ main p {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
   box-shadow: 0 4px 24px var(--card-shadow);
-  border-left: 3px solid var(--accent);
   transition: all 0.4s ease;
 
   display: flex;
@@ -419,7 +418,6 @@ main p {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
-  border-left: 3px solid var(--accent);
   padding: 2rem;
   border-radius: 12px;
   margin-bottom: 2rem;
@@ -450,9 +448,20 @@ main p {
   color: var(--accent-dim);
 }
 
-/* Show more / Expandable */
+/* Show more / Expandable — smooth animation */
+.experience-full {
+  overflow: hidden;
+  opacity: 1;
+  max-height: 2000px;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.35s ease 0.1s;
+}
+
 .experience-full.hidden {
-  display: none;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.2s ease;
 }
 
 .show-more-btn {
@@ -523,18 +532,9 @@ main p {
 }
 
 /* ═══════════════════════════════
-   About Top — Side by Side Cards
+   About Me — Full-Width Glass Panel
    ═══════════════════════════════ */
-.about-top {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin-bottom: 3rem;
-}
-
-.about-intro,
-.about-fun {
-  flex: 1 1 45%;
+.about-intro {
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -543,11 +543,11 @@ main p {
   border-radius: 12px;
   box-shadow: 0 4px 24px var(--card-shadow);
   transition: all 0.4s ease;
+  margin-bottom: 1rem;
 }
 
-.about-intro:hover,
-.about-fun:hover {
-  transform: translateY(-5px);
+.about-intro:hover {
+  transform: translateY(-3px);
   border-color: var(--border-accent);
   box-shadow: 0 8px 32px var(--card-shadow), 0 0 24px var(--accent-glow);
 }
@@ -555,7 +555,28 @@ main p {
 /* About Intro text left-aligned */
 .about-intro p {
   text-align: left;
-  margin: 0;
+  margin: 0 0 1rem 0;
+}
+
+/* ═══════════════════════════════
+   Fun Facts — Standalone Bottom Section
+   ═══════════════════════════════ */
+.about-fun {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px var(--card-shadow);
+  transition: all 0.4s ease;
+  margin: 4rem 0;
+}
+
+.about-fun:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-accent);
+  box-shadow: 0 8px 32px var(--card-shadow), 0 0 24px var(--accent-glow);
 }
 
 /* Fun facts list */
@@ -606,9 +627,5 @@ main p {
   .about-education,
   .experience-item {
     text-align: left;
-  }
-
-  .about-top {
-    flex-direction: column;
   }
 }
