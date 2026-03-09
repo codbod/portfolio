@@ -28,31 +28,58 @@
     <script src="transitions.js" defer></script>
     <script src="background.js" defer></script>
     <style>
-        .coming-soon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 60vh;
-            text-align: center;
+        /* ═══════════════════════════════════════
+           Certifications Page
+           ═══════════════════════════════════════ */
+        .certs-container {
+            max-width: 1100px;
+            margin: 0 auto;
             padding: 2rem;
         }
 
-        .coming-soon-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 0 12px var(--accent-glow));
+        .certs-header {
+            text-align: center;
+            margin-bottom: 3rem;
         }
 
-        .coming-soon h1 {
+        .certs-header h1 {
             font-size: 2rem;
             color: var(--text-color);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             background: transparent;
+            position: relative;
+            display: inline-block;
         }
 
-        .coming-soon .joke {
-            max-width: 500px;
+        .certs-header h1::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 2px;
+            background: var(--accent);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .certs-header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Cert cards grid */
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+        }
+
+        /* Individual cert card */
+        .cert-card {
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -60,49 +87,110 @@
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 4px 24px var(--card-shadow);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-accent);
+            box-shadow: 0 8px 32px var(--card-shadow), 0 0 24px var(--accent-glow);
+        }
+
+        /* Badge wrapper */
+        .cert-badge {
             margin-bottom: 1.5rem;
+            min-height: 270px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .coming-soon .joke p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--text-color);
-            margin: 0;
-        }
-
-        .coming-soon .joke .punchline {
-            margin-top: 1rem;
+        /* Cert info */
+        .cert-info h3 {
             color: var(--accent);
+            font-size: 1.2rem;
             font-weight: 600;
-            font-size: 1.15rem;
+            margin-bottom: 0.4rem;
         }
 
-        .coming-soon .status {
-            font-size: 0.85rem;
+        .cert-info .cert-issuer {
             color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .cert-info .cert-date {
             font-family: 'Courier New', monospace;
-            letter-spacing: 1px;
-        }
-
-        .coming-soon .status span {
+            font-size: 0.8rem;
             color: var(--accent);
+            opacity: 0.7;
+            letter-spacing: 0.5px;
         }
 
-        @media (max-width: 768px) {
-            .coming-soon h1 {
-                font-size: 1.4rem;
+        /* Status LED for active certs */
+        .cert-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 1rem;
+            font-size: 0.78rem;
+            font-family: 'Courier New', monospace;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+        }
+
+        .cert-status-led {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 6px #22c55e80;
+            animation: cert-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes cert-pulse {
+
+            0%,
+            100% {
+                opacity: 1;
             }
 
-            .coming-soon .joke {
+            50% {
+                opacity: 0.4;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .certs-container {
+                padding: 1rem;
+            }
+
+            .certs-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .certs-header {
+                margin-bottom: 2rem;
+            }
+
+            .certs-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .cert-card {
                 padding: 1.25rem;
             }
 
-            .coming-soon .joke p {
-                font-size: 0.95rem;
-            }
-
-            .coming-soon-icon {
-                font-size: 3rem;
+            .cert-card:hover {
+                transform: none;
             }
         }
     </style>
@@ -187,28 +275,36 @@
     <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
 
     <main>
-        <div class="coming-soon">
-            <div class="coming-soon-icon">🔐</div>
-            <h1>Certifications</h1>
-            <div class="joke">
-                <p
-                    style="font-family: 'Courier New', monospace; font-size: 0.85rem; color: var(--text-secondary); text-align: left; line-height: 1.9;">
-                    [2026-03-08 21:45:02 UTC] <span style="color: var(--accent);">NOTICE</span><br>
-                    ── INCIDENT #4092 ──────────────────<br>
-                    SERVICE: certifications.endpoint<br>
-                    STATUS: <span style="color: #f59e0b;">PROVISIONING</span><br>
-                    SEVERITY: Low — no data loss<br>
-                    ─────────────────────────────────────<br>
-                    Root cause: Engineer is still configuring<br>
-                    this module. Credentials verified, but<br>
-                    content deployment is pending.<br>
-                    ─────────────────────────────────────<br>
-                    ETA: Next maintenance window
-                </p>
+        <div class="certs-container">
+            <div class="certs-header">
+                <h1>Certifications</h1>
+                <p>Verified professional credentials</p>
             </div>
-            <p class="status">TICKET: <span>#4092 — OPEN</span></p>
+
+            <div class="certs-grid">
+                <!-- CCNA Card -->
+                <div class="cert-card">
+                    <div class="cert-badge">
+                        <div data-iframe-width="150" data-iframe-height="270"
+                            data-share-badge-id="bfbeab26-dd8f-418c-bd92-27869d286676"
+                            data-share-badge-host="https://www.credly.com"></div>
+                    </div>
+                    <div class="cert-info">
+                        <h3>CCNA</h3>
+                        <p class="cert-issuer">Cisco</p>
+                        <p class="cert-date">VERIFIED // CREDLY</p>
+                    </div>
+                    <div class="cert-status">
+                        <span class="cert-status-led"></span>
+                        CREDENTIAL ACTIVE
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
+
+    <!-- Credly embed script -->
+    <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
     <footer class="site-footer">
         <p>© 2025 Cody Yeung</p>

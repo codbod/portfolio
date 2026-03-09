@@ -612,6 +612,72 @@ main p {
 }
 
 /* ═══════════════════════════════
+   Certifications Showcase (About Page)
+   ═══════════════════════════════ */
+.about-certs {
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.certs-showcase {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.cert-badge-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 4px 24px var(--card-shadow);
+  transition: all 0.4s ease;
+  max-width: 200px;
+}
+
+.cert-badge-link:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-accent);
+  box-shadow: 0 8px 32px var(--card-shadow), 0 0 24px var(--accent-glow);
+}
+
+.cert-badge-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.cert-badge-link:hover .cert-badge-img {
+  transform: scale(1.05);
+}
+
+.cert-badge-label {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.3rem;
+}
+
+.cert-badge-issuer {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.3px;
+}
+
+/* ═══════════════════════════════
    Responsive
    ═══════════════════════════════ */
 @media (max-width: 768px) {
@@ -780,6 +846,28 @@ main p {
   .about-fun li {
     font-size: 0.92rem;
     line-height: 1.6;
+  }
+
+  /* ── Cert badges compact ── */
+  .about-certs {
+    margin: 1.5rem 0;
+  }
+
+  .cert-badge-link {
+    padding: 1rem 1.25rem;
+  }
+
+  .cert-badge-link:hover {
+    transform: none;
+  }
+
+  .cert-badge-img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .cert-badge-label {
+    font-size: 0.95rem;
   }
 
   /* ── Footer compact ── */
