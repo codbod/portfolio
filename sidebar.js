@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ── Live Uptime Counter ──
-    // Birthday: July 20, 2004
-    var birthday = new Date(2004, 6, 20); // month is 0-indexed
+    // Birthday: May 10, 2004
+    var birthday = new Date(2004, 4, 10); // month is 0-indexed
 
     function updateUptime() {
         var now = new Date();

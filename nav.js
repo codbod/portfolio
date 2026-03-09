@@ -14,9 +14,11 @@ function getNavbarHTML() {
       </div>
       <div class="nav-center">
         <div class="nav-links">
-          <a href="index.html">About Me</a>
+          <a href="index.html"><span class="nav-full">About Me</span><span class="nav-short">About</span></a>
           <a href="resume.html">Resume</a>
-          <a href="contact.html">Contact Me</a>
+          <a href="certifications.html"><span class="nav-full">Certifications</span><span class="nav-short">Certs</span></a>
+          <a href="projects.html">Projects</a>
+          <a href="contact.html"><span class="nav-full">Contact Me</span><span class="nav-short">Contact</span></a>
         </div>
       </div>
       ${isResumePage ? `
@@ -169,6 +171,8 @@ function loadNavbar() {
         <div class="nav-links">
           <a href="index.html">About Me</a>
           <a href="resume.html">Resume</a>
+          <a href="certifications.html">Certifications</a>
+          <a href="projects.html">Projects</a>
           <a href="contact.html">Contact Me</a>
         </div>
       </div>

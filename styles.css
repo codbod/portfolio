@@ -853,6 +853,23 @@ footer {
   }
 }
 
+/* ── Responsive nav labels ── */
+/* Short labels hidden on desktop */
+.nav-short {
+  display: none;
+}
+
+/* On mobile, swap to short labels */
+@media (max-width: 768px) {
+  .nav-full {
+    display: none;
+  }
+
+  .nav-short {
+    display: inline;
+  }
+}
+
 /* ═══════════════════════════════
    Theme Toggle (legacy support)
    ═══════════════════════════════ */

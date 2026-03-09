@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Certifications – Cody Yeung</title>
+    <meta name="description" content="Professional certifications held by Cody Yeung, including CCNA, Azure, and more.">
+    <meta property="og:title" content="Certifications – Cody Yeung">
+    <meta property="og:description" content="View Cody Yeung's professional IT and networking certifications.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://codbod.github.io/portfolio/certifications.html">
+    <meta property="og:image" content="https://codbod.github.io/portfolio/headshot_small.jpg">
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <script src="nav.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script src="theme.js" defer></script>
+    <script src="transitions.js" defer></script>
+    <script src="background.js" defer></script>
+    <style>
+        .coming-soon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .coming-soon-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 12px var(--accent-glow));
+        }
+
+        .coming-soon h1 {
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            background: transparent;
+        }
+
+        .coming-soon .joke {
+            max-width: 500px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 24px var(--card-shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .coming-soon .joke p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .coming-soon .joke .punchline {
+            margin-top: 1rem;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.15rem;
+        }
+
+        .coming-soon .status {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+        }
+
+        .coming-soon .status span {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .coming-soon h1 {
+                font-size: 1.4rem;
+            }
+
+            .coming-soon .joke {
+                padding: 1.25rem;
+            }
+
+            .coming-soon .joke p {
+                font-size: 0.95rem;
+            }
+
+            .coming-soon-icon {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="with-sidebar">
+
+    <aside class="sidebar">
+        <div class="sys-module sys-header">
+            <span class="sys-led"></span>
+            <div class="sys-header-text">
+                SYSTEM NODE: <strong>CODY-CORE</strong><br>
+                STATUS: <span class="sys-status">ONLINE</span>
+            </div>
+        </div>
+        <div class="sys-divider"></div>
+
+        <div class="sys-module sys-identity">
+            <div class="sys-photo-container">
+                <div class="sys-ring-outer"></div>
+                <div class="sys-ring-inner"></div>
+                <img src="headshot.webp" alt="Cody Yeung" class="sys-photo">
+            </div>
+            <div class="sys-name">Cody Yeung</div>
+            <div class="sys-role">SCAI IT Helpdesk Lead</div>
+        </div>
+        <div class="sys-divider"></div>
+
+        <div class="sys-module sys-metadata">
+            <div class="sys-meta-row"><span class="sys-meta-key">IP</span><span class="sys-meta-val">127.0.0.1</span>
+            </div>
+            <div class="sys-meta-row"><span class="sys-meta-key">Role</span><span class="sys-meta-val">IT Helpdesk
+                    Lead</span></div>
+            <div class="sys-meta-row"><span class="sys-meta-key">Uptime</span><span class="sys-meta-val"
+                    id="sys-uptime">21y 0d 0h</span></div>
+            <div class="sys-meta-row"><span class="sys-meta-key">Location</span><span class="sys-meta-val">Tempe,
+                    AZ</span></div>
+        </div>
+        <div class="sys-divider"></div>
+
+        <div class="sys-module sys-network">
+            <a href="https://github.com/codbod" target="_blank" class="sys-net-item" data-tooltip="github.com/codbod">
+                <span class="sys-net-led green"></span><span class="sys-net-label">GitHub</span><span
+                    class="sys-net-status">Active</span>
+            </a>
+            <a href="https://www.linkedin.com/in/codyyeung04/" target="_blank" class="sys-net-item"
+                data-tooltip="linkedin.com/in/codyyeung04">
+                <span class="sys-net-led cyan"></span><span class="sys-net-label">LinkedIn</span><span
+                    class="sys-net-status">Active</span>
+            </a>
+            <a href="mailto:cody.g.yeung@gmail.com" class="sys-net-item" data-tooltip="cody.g.yeung@gmail.com">
+                <span class="sys-net-led green"></span><span class="sys-net-label">Email</span><span
+                    class="sys-net-status">Active</span>
+            </a>
+        </div>
+        <div class="sys-divider"></div>
+
+        <div class="sys-module sys-ports">
+            <div class="sys-ports-label">External Ports</div>
+            <div class="sys-ports-grid">
+                <a href="index.html" class="sys-port"><span class="sys-port-dot"></span><span class="sys-port-num">PORT
+                        80</span></a>
+                <a href="resume.html" class="sys-port"><span class="sys-port-dot"></span><span class="sys-port-num">PORT
+                        443</span></a>
+                <a href="contact.html" class="sys-port"><span class="sys-port-dot"></span><span
+                        class="sys-port-num">PORT 22</span></a>
+                <a href="mailto:cody.g.yeung@gmail.com" class="sys-port"><span class="sys-port-dot"></span><span
+                        class="sys-port-num">PORT 25</span></a>
+                <a href="https://github.com/codbod" target="_blank" class="sys-port"><span
+                        class="sys-port-dot"></span><span class="sys-port-num">PORT 8080</span></a>
+                <a href="https://www.linkedin.com/in/codyyeung04/" target="_blank" class="sys-port"><span
+                        class="sys-port-dot"></span><span class="sys-port-num">PORT 8443</span></a>
+            </div>
+        </div>
+        <div class="sys-divider"></div>
+
+        <div class="sys-module sys-footer">
+            <div class="sys-footer-text">FW v2.5.0 // 2026.03.08<br>KERNEL: PORTFOLIO-SYS<br>BUILD: STABLE</div>
+        </div>
+    </aside>
+
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
+
+    <main>
+        <div class="coming-soon">
+            <div class="coming-soon-icon">🔐</div>
+            <h1>Certifications</h1>
+            <div class="joke">
+                <p
+                    style="font-family: 'Courier New', monospace; font-size: 0.85rem; color: var(--text-secondary); text-align: left; line-height: 1.9;">
+                    [2026-03-08 21:45:02 UTC] <span style="color: var(--accent);">NOTICE</span><br>
+                    ── INCIDENT #4092 ──────────────────<br>
+                    SERVICE: certifications.endpoint<br>
+                    STATUS: <span style="color: #f59e0b;">PROVISIONING</span><br>
+                    SEVERITY: Low — no data loss<br>
+                    ─────────────────────────────────────<br>
+                    Root cause: Engineer is still configuring<br>
+                    this module. Credentials verified, but<br>
+                    content deployment is pending.<br>
+                    ─────────────────────────────────────<br>
+                    ETA: Next maintenance window
+                </p>
+            </div>
+            <p class="status">TICKET: <span>#4092 — OPEN</span></p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2025 Cody Yeung</p>
+        <p>
+            <a href="mailto:cody.g.yeung@gmail.com">Email</a> |
+            <a href="https://linkedin.com/in/codyyeung04" target="_blank">LinkedIn</a> |
+            <a href="resume.html">Resume</a>
+        </p>
+        <p class="footer-note">Aspiring IT Specialist | Problem Solver | Tech Enthusiast</p>
+    </footer>
+</body>
+
+</html>
